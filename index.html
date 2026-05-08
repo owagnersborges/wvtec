@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocare Tech - Protótipo [cite: 16]</title>
+    <style>
+        /* Variáveis e Reset */
+        :root {
+            --bg-color: #0d0d0d;
+            --text-color: #f5f5f7;
+            --accent-color: #00e5ff;
+            --card-bg: #1a1a1a;
+            --border-color: #333;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        
+        /* Navegação */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background-color: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 24px; font-weight: bold; color: var(--text-color); letter-spacing: 1px; }
+        .logo span { color: var(--accent-color); }
+        .menu-links { display: flex; gap: 20px; align-items: center; }
+        .menu-links button { background: none; border: none; color: var(--text-color); font-size: 16px; cursor: pointer; transition: color 0.3s; }
+        .menu-links button:hover { color: var(--accent-color); }
+        .btn-primary { background-color: var(--accent-color); color: #000 !important; padding: 10px 20px; border-radius: 5px; font-weight: bold; }
+        
+        /* Estrutura de Páginas */
+        .page { display: none; animation: fadeIn 0.5s; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* Elementos Comuns */
+        .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+        .hero { text-align: center; padding: 100px 20px; background: linear-gradient(180deg, #111 0%, #0d0d0d 100%); border-bottom: 1px solid var(--border-color); }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; color: #aaa; max-width: 800px; margin: 0 auto; }
+        .section-title { font-size: 2rem; color: var(--accent-color); margin-bottom: 30px; text-align: center; }
+        
+        /* Grids e Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background-color: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .card h3 { color: var(--accent-color); margin-bottom: 15px; font-size: 1.5rem; }
+        
+        /* Formulários */
+        form { display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); }
+        input, select, textarea { padding: 12px; border-radius: 5px; border: 1px solid #444; background-color: #222; color: white; font-size: 16px; }
+        .checkbox-group { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #ccc; }
+        button[type="submit"] { background-color: var(--accent-color); color: #000; border: none; padding: 15px; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        button[type="submit"]:hover { background-color: #00b3cc; }
+
+        /* Rodapé */
+        footer { background-color: #000; padding: 60px 50px; border-top: 1px solid var(--border-color); margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-col h4 { color: var(--accent-color); margin-bottom: 20px; }
+        .footer-col p, .footer-col a { color: #888; text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; }
+        .footer-col a:hover { color: var(--accent-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Vocare <span>Tech</span> [cite: 4]</div>
+        <div class="menu-links">
+            <button onclick="navigate('home')">Home [cite: 5]</button>
+            <button onclick="navigate('quem-somos')">Quem Somos</button>
+            <button onclick="navigate('trabalhe-conosco')">Trabalhe Conosco</button>
+            <button onclick="navigate('fale-conosco')">Fale Conosco [cite: 13]</button>
+            <button>PT / EN [cite: 12]</button>
+            <button class="btn-primary">Área do cliente [cite: 8]</button>
+        </div>
+    </nav>
+
+    <div id="home" class="page active">
+        <section class="hero">
+            <h1>Infraestrutura digital inteligente para operações que não podem errar. [cite: 17]</h1>
+            <p>Atendemos os mercados financeiro, contábil e fiscal. Conformidade regulatória | Integridade de dados | Alta disponibilidade. [cite: 18, 19]</p>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">Tecnologias que transformam [cite: 29]</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #aaa;">A Vocare Tech é parte do Vocare Group, um ecossistema que move a gestão de mais de R$ 2,5 bilhões com atuação no Brasil, Europa e EUA. [cite: 30]</p>
+            
+            <div class="grid" style="text-align: center; margin-bottom: 50px;">
+                <div class="card"><h2>8 anos</h2><p>de experiência [cite: 35]</p></div>
+                <div class="card"><h2>+4.000</h2><p>clientes atendidos [cite: 36]</p></div>
+                <div class="card"><h2>Brasil</h2><p>Atuação em todo território [cite: 37]</p></div>
+            </div>
+
+            <h2 class="section-title">Nossas soluções [cite: 40]</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Tributação </h3>
+                    <p>O software da nova contabilidade. Com previsibilidade, compliance e estratégia, o ARK transforma a Reforma Tributária em vantagem competitiva. [cite: 43]</p>
+                </div>
+                <div class="card">
+                    <h3>Securitização </h3>
+                    <p>Sistemas para FIDCs, veículos estruturados e fundos com rastreabilidade e conformidade regulatória. [cite: 45]</p>
+                </div>
+                <div class="card">
+                    <h3>Investimentos [cite: 46]</h3>
+                    <p>Plataformas para análise, decisão e automação em ambientes financeiros complexos. [cite: 47]</p>
+                </div>
+                <div class="card">
+                    <h3>Estruturas financeiras [cite: 48]</h3>
+                    <p>Monitoramento, análise de risco e relatórios regulatórios para crédito e fundos. [cite: 49]</p>
+                </div>
+            </div>
+
+            <div class="hero" style="margin-top: 50px; background: var(--card-bg); border-radius: 8px;">
+                <h2 style="color: var(--accent-color); margin-bottom: 20px;">ARK - O software da nova contabilidade. </h2>
+                <p style="margin-bottom: 20px;">Não há mais tempo para simulações. A Reforma Tributária já está em curso e as empresas precisam de cálculos precisos. [cite: 57]</p>
+                <button class="btn-primary" onclick="navigate('fale-conosco')">Conheça o ARK [cite: 65]</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="quem-somos" class="page">
+        <section class="hero">
+            <h1>Conheça a Vocare Tech [cite: 102]</h1>
+            <p>Vocação é atender a um chamado que vai além da profissão e cumpre um propósito maior. [cite: 104]</p>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">Vocação [cite: 106]</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #ccc; max-width: 800px; margin: 0 auto;">Vocação é o compromisso de alinhar talentos, empresas e recursos a um propósito maior de gerar valor sustentável e impacto positivo na sociedade. O grupo Vocare atua como a facilitadora desse processo. [cite: 108, 111]</p>
+
+            <div class="card" style="margin: 40px 0; text-align: center;">
+                <h3>Tecnologia com propósito, construída para quem não pode errar. [cite: 115]</h3>
+                <p>Somos o braço de tecnologia do Vocare Group, dedicados ao desenvolvimento de sistemas para os mercados financeiro, contábil e fiscal. Nossas soluções são projetadas com foco em conformidade regulatória, integridade de dados e alta disponibilidade. [cite: 118, 119]</p>
+            </div>
+
+            <h2 class="section-title">Compromisso e propósito [cite: 145]</h2>
+            <p style="text-align: center; color: #ccc; max-width: 800px; margin: 0 auto;">Aplicamos o conceito de Redenção Econômica pois acreditamos que prosperidade gerada com excelência tem o poder de transformar vidas, promovendo prosperidade compartilhada e desenvolvimento sustentável com justiça e equidade. [cite: 147]</p>
+        </section>
+    </div>
+
+    <div id="trabalhe-conosco" class="page">
+        <section class="hero">
+            <h1>Trabalhe conosco [cite: 174]</h1>
+            <p>Faça parte de quem está na linha de frente da transformação tributária brasileira e do futuro das empresas. </p>
+        </section>
+
+        <section class="container">
+            <div style="max-width: 800px; margin: 0 auto 40px auto; text-align: center;">
+                <h3 style="color: var(--accent-color); margin-bottom: 15px;">Procuramos pessoas [cite: 184]</h3>
+                <p style="color: #ccc;">Gostamos de pessoas que não se contentam com o óbvio. Que entendem que tecnologia para mercados regulatórios exige mais do que código bem escrito, exige compreensão do problema. [cite: 186, 187]</p>
+            </div>
+
+            <h2 class="section-title">Envie seu currículo [cite: 192]</h2>
+            <form onsubmit="event.preventDefault(); alert('Currículo enviado com sucesso! [cite: 207]');">
+                <input type="text" placeholder="Nome [cite: 194]" required>
+                <input type="text" placeholder="Sobrenome [cite: 195]" required>
+                <input type="tel" placeholder="Telefone com DDD [cite: 196]" required>
+                <input type="email" placeholder="E-mail [cite: 197]" required>
+                
+                <select required>
+                    <option value="" disabled selected>Áreas de trabalho [cite: 198]</option>
+                    <option value="1">Atendimento comercial [cite: 200]</option>
+                    <option value="2">Administração [cite: 201]</option>
+                    <option value="3">Suporte técnico [cite: 202]</option>
+                    <option value="4">Desenvolvimento de sistemas [cite: 203]</option>
+                    <option value="5">Financeiro [cite: 204]</option>
+                    <option value="6">Outros [cite: 205]</option>
+                </select>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" required id="privacidade">
+                    <label for="privacidade">Li e estou ciente do Aviso de Privacidade. [cite: 206]</label>
+                </div>
+
+                <button type="submit">Enviar [cite: 207]</button>
+            </form>
+        </section>
+    </div>
+
+    <div id="fale-conosco" class="page">
+        <section class="hero">
+            <h1>Vamos conversar [cite: 213]</h1>
+            <p>Nosso time te responde com agilidade e sem rodeios. [cite: 215]</p>
+        </section>
+
+        <section class="container">
+            <p style="text-align: center; color: #ccc; margin-bottom: 40px; max-width: 700px; margin: 0 auto 40px auto;">Se você quer entender como a Vocare Tech pode apoiar sua operação, tem uma dúvida sobre nossas soluções ou quer explorar uma parceria, estamos disponíveis. [cite: 218]</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Dados enviados com sucesso! [cite: 225]');">
+                <input type="text" placeholder="Nome [cite: 220]" required>
+                <input type="text" placeholder="Sobrenome [cite: 221]" required>
+                <input type="tel" placeholder="Telefone com DDD [cite: 222]" required>
+                <input type="email" placeholder="E-mail [cite: 223]" required>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" required id="comunicacoes">
+                    <label for="comunicacoes">Eu concordo em receber comunicações da Vocare Tech. [cite: 224]</label>
+                </div>
+
+                <button type="submit">Enviar [cite: 225]</button>
+            </form>
+
+            <div style="margin-top: 60px; text-align: center;">
+                <h3 style="color: var(--accent-color); margin-bottom: 15px;">Onde estamos [cite: 230]</h3>
+                <p style="color: #ccc;">Condomínio The Five Business - East Batel [cite: 232]<br>
+                R. Nunes Machado, 68 - Andar 14, Sala 1401 [cite: 233]<br>
+                Centro, Curitiba/PR [cite: 234]</p>
+                
+                <p style="color: #ccc; margin-top: 20px;">contato@vocaretech.com.br [cite: 228]<br>
+                41 3797-0155 [cite: 229]</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Vocare <span>Tech</span> [cite: 81]</h4>
+                <a href="#">LinkedIn [cite: 82]</a>
+                <a href="#">Instagram [cite: 82]</a>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos [cite: 84]</h4>
+                <a href="#" onclick="navigate('home')">Home</a>
+                <a href="#" onclick="navigate('quem-somos')">Quem Somos</a>
+                <a href="#" onclick="navigate('trabalhe-conosco')">Trabalhe Conosco</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <p>contato@vocaretech.com.br [cite: 86]</p>
+                <p>41 3797-0155 [cite: 87]</p>
+                <p>Centro, Curitiba - Paraná [cite: 90]</p>
+            </div>
+            <div class="footer-col">
+                <h4>Proteção de Dados [cite: 93]</h4>
+                <a href="#">Portal de Privacidade [cite: 94]</a>
+                <a href="#">Política de Cookies [cite: 95]</a>
+                <a href="#">Política de Privacidade [cite: 96]</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function navigate(pageId) {
+            // Oculta todas as páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Mostra a página selecionada
+            document.getElementById(pageId).classList.add('active');
+            // Rola para o topo
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
