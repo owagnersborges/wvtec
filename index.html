@@ -102,13 +102,12 @@
         .hero-slider {
             position: relative;
             width: 100%;
-            height: 100vh; /* Ocupa 100% da altura da tela */
+            height: 100vh;
             min-height: 700px;
             max-height: 900px;
             overflow: hidden;
         }
         
-        /* Gradiente escuro no topo para o menu branco ser legível sempre */
         .slider-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 180px;
             background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%);
@@ -339,7 +338,12 @@
                     <p class="text-paragraph" style="font-weight: 600; color: var(--text-primary);">Enquanto outros softwares entregam simulações, o ARK entrega clareza para a decisão.</p>
 
                     <div style="margin: 40px 0; padding: 32px; background: #ffffff; border-radius: 20px; border: 1px solid var(--border-light); display: flex; flex-direction: column; gap: 16px;">
-                        <span style="font-weight: 600; color: var(--text-primary); font-size: 1.1rem;">Tecnologia indicada pelo CTB (Comitê Tributário Brasileiro) para atravessar a Reforma. [LOGO CTB]</span>
+                        
+                        <span style="font-weight: 600; color: var(--text-primary); font-size: 1.1rem; display: flex; align-items: center; flex-wrap: wrap; gap: 16px;">
+                            Tecnologia indicada pelo CTB (Comitê Tributário Brasileiro) para atravessar a Reforma.
+                            <img src="https://raw.githubusercontent.com/owagnersborges/wvtec/refs/heads/main/logo-ctb.jpg" alt="CTB Logo" style="height: 40px; border-radius: 4px; object-fit: contain;">
+                        </span>
+                        
                         <p style="color: var(--text-secondary); font-size: 1rem;">Comitê Tributário Brasileiro é um colegiado composto por tributaristas, auditores e ex-auditores da Receita Federal.</p>
                         <a href="#" onclick="navigate('fale-conosco')" style="color: var(--accent); font-weight: 600; text-decoration: underline;">Saiba mais.</a>
                     </div>
@@ -408,12 +412,15 @@
                 <div>
                     <h2 class="section-title">Vocação</h2>
                     <p class="text-paragraph">Vocação é o compromisso de alinhar talentos, empresas e recursos a um propósito maior de gerar valor sustentável e impacto positivo na sociedade.</p>
-                    <p class="text-paragraph" style="margin-top: 40px; font-weight: 600; color: var(--text-primary);">[LOGOTIPO VOCARE GROUP]</p>
+                    
+                    <img src="https://raw.githubusercontent.com/owagnersborges/wvtec/refs/heads/main/logo-vocare-group.png" alt="Vocare Group" style="height: 32px; margin-top: 40px; margin-bottom: 16px; display: block;">
+                    
                     <p class="text-paragraph">O grupo Vocare atua como a facilitadora desse processo, conectando pessoas e organizações a oportunidades que promovem prosperidade responsável e duradoura, transformando princípios em ações concretas que beneficiam todos os envolvidos.</p>
                 </div>
                 
                 <div style="padding: 60px; background: #ffffff; border-radius: 24px; border: 1px solid var(--border-light);">
                     <img src="https://raw.githubusercontent.com/owagnersborges/wvtec/refs/heads/main/logotipo_vocaretech.png" alt="Vocare Tech" style="height: 24px; margin-bottom: 32px;">
+                    
                     <h3 style="font-size: 2rem; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">Tecnologias que transformam.</h3>
                     <p style="font-size: 1.2rem; font-weight: 500; color: var(--text-primary); margin-bottom: 24px;">Tecnologia com propósito, construída para quem não pode errar.</p>
                     <p class="text-paragraph" style="margin: 0;">Somos o braço de tecnologia do Vocare Group, dedicados ao desenvolvimento de sistemas para os mercados financeiro, contábil e fiscal. Nossas soluções são projetadas com foco em conformidade regulatória, integridade de dados e alta disponibilidade. Para operações que exigem segurança e precisão.</p>
@@ -447,7 +454,12 @@
                 <div style="text-align: center; margin-bottom: 100px;">
                     <span class="section-label">Clientes</span>
                     <h3 style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 40px;">Instituições que confiam na Vocare Tech</h3>
-                    <div class="image-placeholder" style="min-height: 120px; background: transparent; border: none;">[LOGOTIPOS DE EMPRESAS CLIENTES E DO CTB]</div>
+                    
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 40px; min-height: 120px;">
+                        <img src="https://raw.githubusercontent.com/owagnersborges/wvtec/refs/heads/main/logo-ctb.jpg" alt="CTB Logo" style="height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7';">
+                        <span style="color: var(--text-tertiary); font-weight: 500;">+ Mais de 4.000 clientes</span>
+                    </div>
+
                 </div>
 
                 <div class="split-layout" style="margin-bottom: 100px;">
