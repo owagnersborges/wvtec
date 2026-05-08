@@ -3,251 +3,583 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vocare Tech - Protótipo [cite: 16]</title>
+    <title>Vocare Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* Variáveis e Reset */
         :root {
-            --bg-color: #0d0d0d;
-            --text-color: #f5f5f7;
-            --accent-color: #00e5ff;
-            --card-bg: #1a1a1a;
-            --border-color: #333;
+            --bg-base: #000000;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #121212;
+            --border-light: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --accent: #ffffff;
+            --accent-invert: #000000;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
-        
-        /* Navegação */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background-color: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); }
-        .logo { font-size: 24px; font-weight: bold; color: var(--text-color); letter-spacing: 1px; }
-        .logo span { color: var(--accent-color); }
-        .menu-links { display: flex; gap: 20px; align-items: center; }
-        .menu-links button { background: none; border: none; color: var(--text-color); font-size: 16px; cursor: pointer; transition: color 0.3s; }
-        .menu-links button:hover { color: var(--accent-color); }
-        .btn-primary { background-color: var(--accent-color); color: #000 !important; padding: 10px 20px; border-radius: 5px; font-weight: bold; }
-        
-        /* Estrutura de Páginas */
-        .page { display: none; animation: fadeIn 0.5s; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        /* Elementos Comuns */
-        .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
-        .hero { text-align: center; padding: 100px 20px; background: linear-gradient(180deg, #111 0%, #0d0d0d 100%); border-bottom: 1px solid var(--border-color); }
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; color: #aaa; max-width: 800px; margin: 0 auto; }
-        .section-title { font-size: 2rem; color: var(--accent-color); margin-bottom: 30px; text-align: center; }
-        
-        /* Grids e Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { background-color: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
-        .card h3 { color: var(--accent-color); margin-bottom: 15px; font-size: 1.5rem; }
-        
-        /* Formulários */
-        form { display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); }
-        input, select, textarea { padding: 12px; border-radius: 5px; border: 1px solid #444; background-color: #222; color: white; font-size: 16px; }
-        .checkbox-group { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #ccc; }
-        button[type="submit"] { background-color: var(--accent-color); color: #000; border: none; padding: 15px; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 10px; }
-        button[type="submit"]:hover { background-color: #00b3cc; }
 
-        /* Rodapé */
-        footer { background-color: #000; padding: 60px 50px; border-top: 1px solid var(--border-color); margin-top: 50px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .footer-col h4 { color: var(--accent-color); margin-bottom: 20px; }
-        .footer-col p, .footer-col a { color: #888; text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; }
-        .footer-col a:hover { color: var(--accent-color); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAVEGAÇÃO FLUTUANTE (Estilo Framer) */
+        .navbar-container {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        nav {
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-light);
+            border-radius: 100px;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .menu-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .menu-links button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .menu-links button:hover, .menu-links button.active-link {
+            color: var(--text-primary);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--accent-invert) !important;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-weight: 600 !important;
+            font-size: 14px;
+            transition: transform 0.2s ease, opacity 0.2s;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        /* ESTRUTURA DE PÁGINAS */
+        .page {
+            display: none;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            padding-top: 120px; /* Espaço para o menu */
+            min-height: 100vh;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO SECTIONS */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* GRIDS & CARDS */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 40px 32px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .card.center { align-items: center; text-align: center; }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* BLOCO DESTAQUE (Banner Escuro) */
+        .highlight-banner {
+            background: linear-gradient(145deg, #0a0a0a 0%, #000000 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        /* FORMULÁRIOS */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 16px;
+            background-color: #050505;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-top: 4px;
+        }
+
+        button[type="submit"] {
+            background-color: var(--accent);
+            color: var(--accent-invert);
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        button[type="submit"]:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
+        }
+
+        /* RODAPÉ */
+        footer {
+            border-top: 1px solid var(--border-light);
+            padding: 80px 24px 40px 24px;
+            margin-top: 100px;
+            background-color: #000;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+        }
+
+        .footer-col h4 {
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .footer-col p, .footer-col a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Responsividade Menu */
+        @media (max-width: 768px) {
+            .menu-links button:not(.btn-primary) {
+                display: none; /* Esconde botões menores no mobile para simplificar o protótipo */
+            }
+            .hero h1 { font-size: 2.5rem; }
+            nav { padding: 12px 16px; }
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">Vocare <span>Tech</span> [cite: 4]</div>
-        <div class="menu-links">
-            <button onclick="navigate('home')">Home [cite: 5]</button>
-            <button onclick="navigate('quem-somos')">Quem Somos</button>
-            <button onclick="navigate('trabalhe-conosco')">Trabalhe Conosco</button>
-            <button onclick="navigate('fale-conosco')">Fale Conosco [cite: 13]</button>
-            <button>PT / EN [cite: 12]</button>
-            <button class="btn-primary">Área do cliente [cite: 8]</button>
-        </div>
-    </nav>
+    <div class="navbar-container">
+        <nav>
+            <div class="logo" onclick="navigate('home')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 22 22 22"></polygon></svg>
+                Vocare Tech
+            </div>
+            <div class="menu-links">
+                <button onclick="navigate('home')" class="nav-btn">Home</button>
+                <button onclick="navigate('quem-somos')" class="nav-btn">Quem Somos</button>
+                <button onclick="navigate('trabalhe-conosco')" class="nav-btn">Trabalhe Conosco</button>
+                <button onclick="navigate('fale-conosco')" class="nav-btn">Fale Conosco</button>
+                <button class="btn-primary" onclick="alert('Área do cliente: Redirecionando para login...')">Sou Cliente</button>
+            </div>
+        </nav>
+    </div>
 
     <div id="home" class="page active">
         <section class="hero">
-            <h1>Infraestrutura digital inteligente para operações que não podem errar. [cite: 17]</h1>
-            <p>Atendemos os mercados financeiro, contábil e fiscal. Conformidade regulatória | Integridade de dados | Alta disponibilidade. [cite: 18, 19]</p>
+            <h1>Infraestrutura digital inteligente para operações que não podem errar.</h1>
+            <p>Atendemos os mercados financeiro, contábil e fiscal com máxima conformidade regulatória, integridade de dados e alta disponibilidade.</p>
+            <div style="display: flex; gap: 16px; justify-content: center;">
+                <button class="btn-primary" style="padding: 14px 28px; font-size: 16px;" onclick="navigate('fale-conosco')">Quero contratar</button>
+                <button class="btn-secondary" onclick="document.getElementById('solucoes').scrollIntoView({behavior: 'smooth'})">Ver soluções</button>
+            </div>
         </section>
 
-        <section class="container">
-            <h2 class="section-title">Tecnologias que transformam [cite: 29]</h2>
-            <p style="text-align: center; margin-bottom: 40px; color: #aaa;">A Vocare Tech é parte do Vocare Group, um ecossistema que move a gestão de mais de R$ 2,5 bilhões com atuação no Brasil, Europa e EUA. [cite: 30]</p>
+        <section class="container" id="solucoes">
+            <div style="text-align: center; margin-bottom: 64px;">
+                <span class="section-label">Tecnologias que transformam</span>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">A Vocare Tech é parte do Vocare Group, um ecossistema que move a gestão de mais de R$ 2,5 bilhões com atuação global.</p>
+            </div>
             
-            <div class="grid" style="text-align: center; margin-bottom: 50px;">
-                <div class="card"><h2>8 anos</h2><p>de experiência [cite: 35]</p></div>
-                <div class="card"><h2>+4.000</h2><p>clientes atendidos [cite: 36]</p></div>
-                <div class="card"><h2>Brasil</h2><p>Atuação em todo território [cite: 37]</p></div>
-            </div>
-
-            <h2 class="section-title">Nossas soluções [cite: 40]</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Tributação </h3>
-                    <p>O software da nova contabilidade. Com previsibilidade, compliance e estratégia, o ARK transforma a Reforma Tributária em vantagem competitiva. [cite: 43]</p>
+            <div class="grid-3" style="margin-bottom: 80px;">
+                <div class="card center">
+                    <h3 style="font-size: 2.5rem; margin-bottom: 4px;">8 anos</h3>
+                    <p>de experiência sólida</p>
                 </div>
-                <div class="card">
-                    <h3>Securitização </h3>
-                    <p>Sistemas para FIDCs, veículos estruturados e fundos com rastreabilidade e conformidade regulatória. [cite: 45]</p>
+                <div class="card center">
+                    <h3 style="font-size: 2.5rem; margin-bottom: 4px;">+4.000</h3>
+                    <p>clientes atendidos</p>
                 </div>
-                <div class="card">
-                    <h3>Investimentos [cite: 46]</h3>
-                    <p>Plataformas para análise, decisão e automação em ambientes financeiros complexos. [cite: 47]</p>
-                </div>
-                <div class="card">
-                    <h3>Estruturas financeiras [cite: 48]</h3>
-                    <p>Monitoramento, análise de risco e relatórios regulatórios para crédito e fundos. [cite: 49]</p>
+                <div class="card center">
+                    <h3 style="font-size: 2.5rem; margin-bottom: 4px;">Brasil</h3>
+                    <p>Atuação nacional</p>
                 </div>
             </div>
 
-            <div class="hero" style="margin-top: 50px; background: var(--card-bg); border-radius: 8px;">
-                <h2 style="color: var(--accent-color); margin-bottom: 20px;">ARK - O software da nova contabilidade. </h2>
-                <p style="margin-bottom: 20px;">Não há mais tempo para simulações. A Reforma Tributária já está em curso e as empresas precisam de cálculos precisos. [cite: 57]</p>
-                <button class="btn-primary" onclick="navigate('fale-conosco')">Conheça o ARK [cite: 65]</button>
+            <div class="grid-4">
+                <div class="card">
+                    <span class="section-label">01</span>
+                    <h3>Tributação</h3>
+                    <p>O software da nova contabilidade. Previsibilidade e estratégia para transformar a Reforma Tributária em vantagem competitiva.</p>
+                </div>
+                <div class="card">
+                    <span class="section-label">02</span>
+                    <h3>Securitização</h3>
+                    <p>Sistemas para FIDCs, veículos estruturados e fundos com rastreabilidade total e conformidade regulatória.</p>
+                </div>
+                <div class="card">
+                    <span class="section-label">03</span>
+                    <h3>Investimentos</h3>
+                    <p>Plataformas para análise, decisão e automação em ambientes financeiros complexos.</p>
+                </div>
+                <div class="card">
+                    <span class="section-label">04</span>
+                    <h3>Estruturas</h3>
+                    <p>Monitoramento, análise de risco e relatórios regulatórios precisos para crédito e fundos.</p>
+                </div>
+            </div>
+
+            <div class="highlight-banner">
+                <span class="section-label">Conheça o ARK</span>
+                <h2 style="font-size: 2.5rem; margin-bottom: 24px; font-weight: 600;">O software da nova contabilidade.</h2>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 32px auto;">Não há mais tempo para simulações. A Reforma Tributária já está em curso e as empresas precisam de cálculos precisos.</p>
+                <button class="btn-primary" style="padding: 14px 28px; font-size: 16px;" onclick="navigate('fale-conosco')">Website ARK</button>
             </div>
         </section>
     </div>
 
     <div id="quem-somos" class="page">
         <section class="hero">
-            <h1>Conheça a Vocare Tech [cite: 102]</h1>
-            <p>Vocação é atender a um chamado que vai além da profissão e cumpre um propósito maior. [cite: 104]</p>
+            <span class="section-label">Identidade</span>
+            <h1>Conheça a Vocare Tech</h1>
+            <p>Vocação é atender a um chamado que vai além da profissão e cumpre um propósito maior.</p>
         </section>
 
         <section class="container">
-            <h2 class="section-title">Vocação [cite: 106]</h2>
-            <p style="text-align: center; margin-bottom: 40px; color: #ccc; max-width: 800px; margin: 0 auto;">Vocação é o compromisso de alinhar talentos, empresas e recursos a um propósito maior de gerar valor sustentável e impacto positivo na sociedade. O grupo Vocare atua como a facilitadora desse processo. [cite: 108, 111]</p>
-
-            <div class="card" style="margin: 40px 0; text-align: center;">
-                <h3>Tecnologia com propósito, construída para quem não pode errar. [cite: 115]</h3>
-                <p>Somos o braço de tecnologia do Vocare Group, dedicados ao desenvolvimento de sistemas para os mercados financeiro, contábil e fiscal. Nossas soluções são projetadas com foco em conformidade regulatória, integridade de dados e alta disponibilidade. [cite: 118, 119]</p>
+            <div class="grid-2">
+                <div>
+                    <h2 style="font-size: 2rem; margin-bottom: 24px;">Vocação & Propósito</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 16px;">Vocação é o compromisso de alinhar talentos, empresas e recursos a um propósito maior de gerar valor sustentável e impacto positivo na sociedade.</p>
+                    <p style="color: var(--text-secondary);">O grupo Vocare atua como a facilitadora desse processo, conectando pessoas e organizações a oportunidades que promovem prosperidade responsável e duradoura.</p>
+                </div>
+                <div class="card" style="background: rgba(255,255,255,0.03);">
+                    <h3>Redenção Econômica</h3>
+                    <p>Acreditamos que prosperidade gerada com excelência tem o poder de transformar vidas, promovendo prosperidade compartilhada e desenvolvimento sustentável com justiça e equidade.</p>
+                </div>
             </div>
 
-            <h2 class="section-title">Compromisso e propósito [cite: 145]</h2>
-            <p style="text-align: center; color: #ccc; max-width: 800px; margin: 0 auto;">Aplicamos o conceito de Redenção Econômica pois acreditamos que prosperidade gerada com excelência tem o poder de transformar vidas, promovendo prosperidade compartilhada e desenvolvimento sustentável com justiça e equidade. [cite: 147]</p>
+            <div class="highlight-banner" style="text-align: left; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <h2 style="font-size: 2rem; margin-bottom: 16px;">Pessoas e carreiras</h2>
+                <p style="color: var(--text-secondary); max-width: 700px; margin-bottom: 32px;">A Vocare Tech te oferece a oportunidade de desenvolver seu verdadeiro potencial e de ser um agente de mudanças positivas em uma empresa brasileira em expansão.</p>
+                <button class="btn-primary" onclick="navigate('trabalhe-conosco')">Trabalhe conosco</button>
+            </div>
         </section>
     </div>
 
     <div id="trabalhe-conosco" class="page">
-        <section class="hero">
-            <h1>Trabalhe conosco [cite: 174]</h1>
-            <p>Faça parte de quem está na linha de frente da transformação tributária brasileira e do futuro das empresas. </p>
+        <section class="hero" style="padding-bottom: 40px;">
+            <span class="section-label">Carreiras</span>
+            <h1>Faça parte do futuro.</h1>
+            <p>Esteja na linha de frente da transformação tributária brasileira e ajude empresas a atravessar essa transição com inteligência e previsibilidade.</p>
         </section>
 
         <section class="container">
-            <div style="max-width: 800px; margin: 0 auto 40px auto; text-align: center;">
-                <h3 style="color: var(--accent-color); margin-bottom: 15px;">Procuramos pessoas [cite: 184]</h3>
-                <p style="color: #ccc;">Gostamos de pessoas que não se contentam com o óbvio. Que entendem que tecnologia para mercados regulatórios exige mais do que código bem escrito, exige compreensão do problema. [cite: 186, 187]</p>
+            <div style="text-align: center; margin-bottom: 64px;">
+                <h2 style="font-size: 1.5rem; margin-bottom: 16px;">Procuramos pessoas fora da curva</h2>
+                <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto;">Gostamos de pessoas que não se contentam com o óbvio. Que entendem que tecnologia para mercados regulatórios exige mais do que código bem escrito, exige compreensão do problema e atenção ao detalhe.</p>
             </div>
 
-            <h2 class="section-title">Envie seu currículo [cite: 192]</h2>
-            <form onsubmit="event.preventDefault(); alert('Currículo enviado com sucesso! [cite: 207]');">
-                <input type="text" placeholder="Nome [cite: 194]" required>
-                <input type="text" placeholder="Sobrenome [cite: 195]" required>
-                <input type="tel" placeholder="Telefone com DDD [cite: 196]" required>
-                <input type="email" placeholder="E-mail [cite: 197]" required>
-                
-                <select required>
-                    <option value="" disabled selected>Áreas de trabalho [cite: 198]</option>
-                    <option value="1">Atendimento comercial [cite: 200]</option>
-                    <option value="2">Administração [cite: 201]</option>
-                    <option value="3">Suporte técnico [cite: 202]</option>
-                    <option value="4">Desenvolvimento de sistemas [cite: 203]</option>
-                    <option value="5">Financeiro [cite: 204]</option>
-                    <option value="6">Outros [cite: 205]</option>
-                </select>
+            <div class="card" style="max-width: 600px; margin: 0 auto; background: transparent;">
+                <h3 style="margin-bottom: 24px; text-align: center;">Banco de Talentos</h3>
+                <form onsubmit="event.preventDefault(); alert('Currículo enviado com sucesso!');">
+                    <input type="text" placeholder="Nome" required>
+                    <input type="text" placeholder="Sobrenome" required>
+                    <input type="tel" placeholder="Telefone com DDD" required>
+                    <input type="email" placeholder="E-mail" required>
+                    
+                    <select required>
+                        <option value="" disabled selected>Selecione a área de interesse</option>
+                        <option value="1">Atendimento comercial</option>
+                        <option value="2">Administração</option>
+                        <option value="3">Suporte técnico</option>
+                        <option value="4">Desenvolvimento de sistemas (Engenharia/Dados)</option>
+                        <option value="5">Financeiro / Contábil / Fiscal</option>
+                        <option value="6">Outros</option>
+                    </select>
 
-                <div class="checkbox-group">
-                    <input type="checkbox" required id="privacidade">
-                    <label for="privacidade">Li e estou ciente do Aviso de Privacidade. [cite: 206]</label>
-                </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" required id="privacidade">
+                        <label for="privacidade">Li e estou ciente do Aviso de Privacidade.</label>
+                    </div>
 
-                <button type="submit">Enviar [cite: 207]</button>
-            </form>
+                    <button type="submit">Enviar candidatura</button>
+                </form>
+            </div>
         </section>
     </div>
 
     <div id="fale-conosco" class="page">
-        <section class="hero">
-            <h1>Vamos conversar [cite: 213]</h1>
-            <p>Nosso time te responde com agilidade e sem rodeios. [cite: 215]</p>
+        <section class="hero" style="padding-bottom: 40px;">
+            <span class="section-label">Contato</span>
+            <h1>Vamos conversar.</h1>
+            <p>Nosso time te responde com agilidade e sem rodeios. Descubra como podemos apoiar sua operação.</p>
         </section>
 
         <section class="container">
-            <p style="text-align: center; color: #ccc; margin-bottom: 40px; max-width: 700px; margin: 0 auto 40px auto;">Se você quer entender como a Vocare Tech pode apoiar sua operação, tem uma dúvida sobre nossas soluções ou quer explorar uma parceria, estamos disponíveis. [cite: 218]</p>
-            
-            <form onsubmit="event.preventDefault(); alert('Dados enviados com sucesso! [cite: 225]');">
-                <input type="text" placeholder="Nome [cite: 220]" required>
-                <input type="text" placeholder="Sobrenome [cite: 221]" required>
-                <input type="tel" placeholder="Telefone com DDD [cite: 222]" required>
-                <input type="email" placeholder="E-mail [cite: 223]" required>
+            <div class="grid-2" style="max-width: 1000px; margin: 0 auto;">
                 
-                <div class="checkbox-group">
-                    <input type="checkbox" required id="comunicacoes">
-                    <label for="comunicacoes">Eu concordo em receber comunicações da Vocare Tech. [cite: 224]</label>
+                <div class="card" style="background: transparent;">
+                    <form onsubmit="event.preventDefault(); alert('Dados enviados com sucesso!');" style="width: 100%; margin: 0;">
+                        <input type="text" placeholder="Nome" required>
+                        <input type="text" placeholder="Sobrenome" required>
+                        <input type="tel" placeholder="Telefone com DDD" required>
+                        <input type="email" placeholder="E-mail" required>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" required id="comunicacoes">
+                            <label for="comunicacoes">Eu concordo em receber comunicações da Vocare Tech.</label>
+                        </div>
+
+                        <button type="submit">Enviar mensagem</button>
+                    </form>
                 </div>
 
-                <button type="submit">Enviar [cite: 225]</button>
-            </form>
+                <div style="padding: 32px;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 24px;">Fale diretamente</h3>
+                    
+                    <div style="margin-bottom: 32px;">
+                        <span class="section-label">E-mail</span>
+                        <p style="color: var(--text-primary);">contato@vocaretech.com.br</p>
+                    </div>
 
-            <div style="margin-top: 60px; text-align: center;">
-                <h3 style="color: var(--accent-color); margin-bottom: 15px;">Onde estamos [cite: 230]</h3>
-                <p style="color: #ccc;">Condomínio The Five Business - East Batel [cite: 232]<br>
-                R. Nunes Machado, 68 - Andar 14, Sala 1401 [cite: 233]<br>
-                Centro, Curitiba/PR [cite: 234]</p>
-                
-                <p style="color: #ccc; margin-top: 20px;">contato@vocaretech.com.br [cite: 228]<br>
-                41 3797-0155 [cite: 229]</p>
+                    <div style="margin-bottom: 32px;">
+                        <span class="section-label">Telefone / WhatsApp</span>
+                        <p style="color: var(--text-primary);">41 3797-0155</p>
+                    </div>
+
+                    <div>
+                        <span class="section-label">Sede Oficial</span>
+                        <p style="color: var(--text-secondary); line-height: 1.6;">
+                            Condomínio The Five Business - East Batel<br>
+                            R. Nunes Machado, 68 - Andar 14, Sala 1401<br>
+                            Centro, Curitiba/PR
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </section>
     </div>
 
     <footer>
-        <div class="footer-grid">
+        <div class="footer-content">
             <div class="footer-col">
-                <h4>Vocare <span>Tech</span> [cite: 81]</h4>
-                <a href="#">LinkedIn [cite: 82]</a>
-                <a href="#">Instagram [cite: 82]</a>
+                <div class="logo" style="margin-bottom: 24px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 22 22 22"></polygon></svg>
+                    Vocare Tech
+                </div>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
             </div>
             <div class="footer-col">
-                <h4>Links Rápidos [cite: 84]</h4>
+                <h4>Navegação</h4>
                 <a href="#" onclick="navigate('home')">Home</a>
                 <a href="#" onclick="navigate('quem-somos')">Quem Somos</a>
                 <a href="#" onclick="navigate('trabalhe-conosco')">Trabalhe Conosco</a>
+                <a href="#" onclick="navigate('fale-conosco')">Fale Conosco</a>
             </div>
             <div class="footer-col">
-                <h4>Contato</h4>
-                <p>contato@vocaretech.com.br [cite: 86]</p>
-                <p>41 3797-0155 [cite: 87]</p>
-                <p>Centro, Curitiba - Paraná [cite: 90]</p>
+                <h4>Privacidade</h4>
+                <a href="#">Portal de Privacidade</a>
+                <a href="#">Política de Cookies</a>
+                <a href="#">Termos de Uso</a>
             </div>
-            <div class="footer-col">
-                <h4>Proteção de Dados [cite: 93]</h4>
-                <a href="#">Portal de Privacidade [cite: 94]</a>
-                <a href="#">Política de Cookies [cite: 95]</a>
-                <a href="#">Política de Privacidade [cite: 96]</a>
-            </div>
+        </div>
+        <div style="max-width: 1200px; margin: 60px auto 0 auto; border-top: 1px solid var(--border-light); padding-top: 24px; text-align: center; color: var(--text-secondary); font-size: 13px;">
+            &copy; 2026 Vocare Tech. Todos os direitos reservados.
         </div>
     </footer>
 
     <script>
         function navigate(pageId) {
-            // Oculta todas as páginas
+            // Remove classe ativa de todas as páginas
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            // Mostra a página selecionada
+            // Adiciona classe ativa na página correta
             document.getElementById(pageId).classList.add('active');
-            // Rola para o topo
-            window.scrollTo(0, 0);
+            
+            // Atualiza botões do menu (efeito visual)
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.style.color = 'var(--text-secondary)';
+            });
+            event.target.style.color = 'var(--text-primary)';
+
+            // Rola pro topo suavemente
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
