@@ -25,23 +25,13 @@
         body { background-color: var(--bg-base); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
 
         /* =========================================
-           NAVEGAÇÃO (EFEITO TOTVS TRANSPARENTE/SÓLIDO)
+           NAVEGAÇÃO (EFEITO TRANSPARENTE/SÓLIDO)
         =========================================== */
         .navbar-container { 
-            position: fixed; 
-            top: 0; left: 0; width: 100%; 
-            display: flex; justify-content: center; 
-            z-index: 1000; 
-            padding: 24px 40px; 
-            background: transparent; 
-            transition: all 0.4s ease; 
+            position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: center; z-index: 1000; padding: 24px 40px; background: transparent; transition: all 0.4s ease; 
         }
-        .nav-inner {
-            display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: 1200px;
-        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; }
         
-        /* Logo e Cores Transparentes (Topo) */
         .logo { display: flex; align-items: center; cursor: pointer; }
         .logo img { height: 28px; width: auto; object-fit: contain; filter: brightness(0) invert(1); transition: all 0.4s ease; }
         
@@ -50,42 +40,24 @@
         .menu-links button:hover { color: rgba(255,255,255,0.7); }
         .nav-separator { border-left: 1px solid rgba(255,255,255,0.3); height: 20px; margin: 0 4px; transition: border-color 0.4s ease; }
 
-        /* Botão Primário Transparente (Ghost Button) */
-        .navbar-container .btn-primary {
-            background-color: transparent; border: 1px solid rgba(255,255,255,0.5); color: #ffffff !important; padding: 12px 24px; border-radius: 100px; font-weight: 500 !important; font-size: 14px; transition: all 0.3s;
-        }
+        .navbar-container .btn-primary { background-color: transparent; border: 1px solid rgba(255,255,255,0.5); color: #ffffff !important; padding: 12px 24px; border-radius: 100px; font-weight: 500 !important; font-size: 14px; transition: all 0.3s; }
         .navbar-container .btn-primary:hover { background-color: #ffffff; color: #000000 !important; }
 
-        /* Dropdown (Sempre branco para legibilidade) */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #ffffff; min-width: 220px; border-radius: 16px; border: 1px solid var(--border-light); padding: 12px; margin-top: 10px; box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
         .dropdown:hover .dropdown-content { display: block; }
         .dropdown-content a { color: var(--text-secondary) !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
         .dropdown-content a:hover { background-color: var(--bg-section); color: var(--text-primary) !important; }
 
-        /* =========================================
-           NAVEGAÇÃO SÓLIDA (SCROLLED)
-        =========================================== */
-        .navbar-container.scrolled {
-            padding: 16px 40px;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
+        .navbar-container.scrolled { padding: 16px 40px; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
         .navbar-container.scrolled .logo img { filter: none; }
         .navbar-container.scrolled .menu-links button { color: var(--text-secondary); }
         .navbar-container.scrolled .menu-links button:hover { color: var(--text-primary); }
         .navbar-container.scrolled .nav-separator { border-left-color: var(--border-light); }
-        
-        /* Botão Primário Sólido */
-        .navbar-container.scrolled .btn-primary {
-            background-color: var(--accent); color: var(--accent-invert) !important; border-color: transparent;
-        }
+        .navbar-container.scrolled .btn-primary { background-color: var(--accent); color: var(--accent-invert) !important; border-color: transparent; }
         .navbar-container.scrolled .btn-primary:hover { opacity: 0.9; background-color: var(--accent); color: var(--accent-invert) !important; }
 
-        /* PÁGINAS E BOTÕES GERAIS */
+        /* BOTÕES GERAIS */
         .btn-primary { background-color: var(--accent); color: var(--accent-invert) !important; padding: 14px 28px; border-radius: 100px; font-weight: 500; font-size: 15px; cursor: pointer; border: none; transition: transform 0.2s, opacity 0.2s; }
         .btn-primary:hover { opacity: 0.9; transform: scale(1.02); }
         .btn-secondary { background-color: transparent; color: var(--text-primary); border: 1px solid rgba(0,0,0,0.15); padding: 14px 28px; border-radius: 100px; font-weight: 500; font-size: 15px; cursor: pointer; transition: background 0.2s; }
@@ -96,32 +68,13 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* =========================================
-           SLIDER FULL WIDTH (ESTILO TOTVS)
+           SLIDER FULL WIDTH
         =========================================== */
         .slider-wrapper { width: 100%; padding: 0; margin: 0; }
-        .hero-slider {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            min-height: 700px;
-            max-height: 900px;
-            overflow: hidden;
-        }
-        
-        .slider-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 180px;
-            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%);
-            z-index: 5; pointer-events: none;
-        }
-
-        .slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0; transition: opacity 0.8s ease-in-out;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 0;
-        }
+        .hero-slider { position: relative; width: 100%; height: 100vh; min-height: 700px; max-height: 900px; overflow: hidden; }
+        .slider-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 180px; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%); z-index: 5; pointer-events: none; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease-in-out; display: flex; align-items: center; justify-content: center; z-index: 0; }
         .slide.active { opacity: 1; z-index: 1; }
-        
         .slide-content-container { width: 100%; max-width: 1200px; padding: 0 24px; position: relative; z-index: 2; margin-top: 60px; }
         .slide-content { max-width: 800px; transform: translateY(20px); opacity: 0; transition: all 0.8s ease 0.3s; }
         .slide.active .slide-content { transform: translateY(0); opacity: 1; }
@@ -130,20 +83,16 @@
         .slide-title { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 24px; }
         .slide-text { font-size: 1.3rem; line-height: 1.6; font-weight: 400; max-width: 700px; }
 
-        /* Cores de Fundo dos Slides */
         .bg-tech { background: linear-gradient(135deg, #0a0a0a 0%, #222222 100%); color: #ffffff; }
         .bg-tech .slide-label { color: #aaaaaa; }
         .bg-tech .slide-text { color: #cccccc; }
-
         .bg-ark { background: linear-gradient(135deg, #eaf2f8 0%, #cce0ef 100%); color: #111111; }
         .bg-ark .slide-label { color: #555555; }
         .bg-ark .slide-text { color: #444444; }
-
         .bg-group { background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); color: #111111; }
         .bg-group .slide-label { color: #777777; }
         .bg-group .slide-text { color: #555555; }
 
-        /* Controles do Slider */
         .slider-nav { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 10; width: 100%; max-width: 1200px; padding: 0 24px; justify-content: flex-start; }
         .slider-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: all 0.3s ease; }
         .slider-dot.active { background: #ffffff; transform: scale(1.4); }
@@ -151,7 +100,7 @@
         .slider-nav.dark-dots .slider-dot.active { background: #111111; }
 
         /* =========================================
-           ESTRUTURA GERAL (SEÇÕES)
+           ESTRUTURA GERAL
         =========================================== */
         .section-padding { padding: 140px 24px; }
         .section-bg { background-color: var(--bg-section); }
@@ -171,13 +120,22 @@
         .solution-item h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 16px; color: var(--text-primary); }
         .solution-item p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; }
 
-        .image-placeholder { width: 100%; min-height: 400px; background: #eaeaea; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
         .tags-container { display: flex; flex-wrap: wrap; gap: 16px; }
         .tag { border: 1px solid var(--border-light); background: #ffffff; padding: 12px 24px; border-radius: 100px; font-size: 15px; color: var(--text-primary); font-weight: 500; }
 
         .stat-block { display: flex; flex-direction: column; gap: 8px; }
         .stat-block h3 { font-size: 3rem; font-weight: 600; letter-spacing: -0.04em; color: var(--text-primary); line-height: 1; }
         .stat-block p { font-size: 1rem; color: var(--text-secondary); font-weight: 500; }
+
+        /* =========================================
+           CARDS DE CLIPPING (NOVO)
+        =========================================== */
+        .clipping-card { background: #ffffff; border: 1px solid var(--border-light); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: left; height: 100%; }
+        .clipping-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.06); }
+        .clipping-img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; background: var(--bg-section); }
+        .clipping-title { font-weight: 600; font-size: 1.15rem; color: var(--text-primary); line-height: 1.4; flex-grow: 1; }
+        .clipping-link { font-weight: 600; color: var(--accent); text-decoration: none; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; margin-top: auto; }
+        .clipping-link:hover { text-decoration: underline; }
 
         /* Formulários */
         .form-container { background: #ffffff; border: 1px solid var(--border-light); border-radius: 24px; padding: 48px; box-shadow: 0 20px 40px rgba(0,0,0,0.02); }
@@ -273,7 +231,6 @@
                     <div class="slider-dot" onclick="setSlide(1)"></div>
                     <div class="slider-dot" onclick="setSlide(2)"></div>
                 </div>
-
             </div>
         </div>
 
@@ -338,12 +295,10 @@
                     <p class="text-paragraph" style="font-weight: 600; color: var(--text-primary);">Enquanto outros softwares entregam simulações, o ARK entrega clareza para a decisão.</p>
 
                     <div style="margin: 40px 0; padding: 32px; background: #ffffff; border-radius: 20px; border: 1px solid var(--border-light); display: flex; flex-direction: column; gap: 16px;">
-                        
                         <span style="font-weight: 600; color: var(--text-primary); font-size: 1.1rem; display: flex; align-items: center; flex-wrap: wrap; gap: 16px;">
                             Tecnologia indicada pelo CTB (Comitê Tributário Brasileiro) para atravessar a Reforma.
                             <img src="https://raw.githubusercontent.com/owagnersborges/wvtec/refs/heads/main/logo-ctb.jpg" alt="CTB Logo" style="height: 40px; border-radius: 4px; object-fit: contain;">
                         </span>
-                        
                         <p style="color: var(--text-secondary); font-size: 1rem;">Comitê Tributário Brasileiro é um colegiado composto por tributaristas, auditores e ex-auditores da Receita Federal.</p>
                         <a href="#" onclick="navigate('fale-conosco')" style="color: var(--accent); font-weight: 600; text-decoration: underline;">Saiba mais.</a>
                     </div>
@@ -351,8 +306,9 @@
                     <p class="text-paragraph">Tecnologia que transforma complexidade regulatória em vantagem competitiva. Conheça o ARK.</p>
                     <button class="btn-primary" onclick="alert('A redirecionar para Website ARK...')">Website ARK.</button>
                 </div>
-                <div class="image-placeholder" style="height: 600px; background: #ffffff;">
-                    [IMAGEM DO DASHBOARD ARK]
+                
+                <div style="width: 100%; text-align: center;">
+                    <img src="https://framerusercontent.com/images/GoFdb8gCiTRMKAtjOBAVcisYvBc.png" alt="Dashboard ARK" style="width: 100%; max-height: 600px; object-fit: contain; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.08);">
                 </div>
             </div>
         </section>
@@ -364,16 +320,11 @@
                 
                 <span class="section-label" style="margin-bottom: 24px;">Conheça os nossos valores norteadores</span>
                 <div class="tags-container" style="justify-content: center; margin-bottom: 80px;">
-                    <div class="tag">Vocação</div>
-                    <div class="tag">Excelência</div>
-                    <div class="tag">Pessoas</div>
-                    <div class="tag">Confiança</div>
-                    <div class="tag">Proximidade</div>
-                    <div class="tag">Questionadores</div>
+                    <div class="tag">Vocação</div><div class="tag">Excelência</div><div class="tag">Pessoas</div>
+                    <div class="tag">Confiança</div><div class="tag">Proximidade</div><div class="tag">Questionadores</div>
                     <div class="tag">Singularidade</div>
                 </div>
-
-                <div class="image-placeholder" style="height: 250px; border: none; background: transparent;">
+                <div style="width: 100%; height: 250px; background: transparent;">
                     [BARCO COMO ELEMENTO VISUAL. REFERÊNCIAS SITE VOCARE GROUP]
                 </div>
             </div>
@@ -381,19 +332,38 @@
 
         <section class="section-padding section-bg">
             <div class="container">
-                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 24px;">
                     <div>
-                        <span class="section-label">Clipping e Mídia</span>
+                        <span class="section-label">Vocare na Mídia</span>
                         <h2 class="section-title" style="margin: 0;">O que estão a falar sobre nós.</h2>
                     </div>
                     <button class="btn-secondary" onclick="alert('A redirecionar para Página de Clipping...')">Ver mais.</button>
                 </div>
                 
                 <div class="grid-4">
-                    <div class="image-placeholder" style="min-height: 200px; background: #ffffff;">[BLOCO CLIPPING]</div>
-                    <div class="image-placeholder" style="min-height: 200px; background: #ffffff;">[BLOCO CLIPPING]</div>
-                    <div class="image-placeholder" style="min-height: 200px; background: #ffffff;">[BLOCO CLIPPING]</div>
-                    <div class="image-placeholder" style="min-height: 200px; background: #ffffff;">[BLOCO CLIPPING]</div>
+                    <div class="clipping-card">
+                        <img src="https://framerusercontent.com/images/GoFdb8gCiTRMKAtjOBAVcisYvBc.png" alt="Notícia ARK" class="clipping-img" style="object-position: top left;">
+                        <h3 class="clipping-title">ARK: A tecnologia da Vocare Tech para dar previsibilidade à transição da Reforma Tributária.</h3>
+                        <a href="#" class="clipping-link">Ler matéria <span>&rarr;</span></a>
+                    </div>
+                    
+                    <div class="clipping-card">
+                        <div class="clipping-img" style="background: #e0e0e0; display:flex; align-items:center; justify-content:center; color:#555; font-size: 1.2rem; font-weight:bold;">Valor Econômico</div>
+                        <h3 class="clipping-title">Como a inteligência de dados está a revolucionar a conformidade fiscal no Brasil.</h3>
+                        <a href="#" class="clipping-link">Ler matéria <span>&rarr;</span></a>
+                    </div>
+
+                    <div class="clipping-card">
+                        <div class="clipping-img" style="background: #e0e0e0; display:flex; align-items:center; justify-content:center; color:#555; font-size: 1.2rem; font-weight:bold;">Exame</div>
+                        <h3 class="clipping-title">Ecossistema Vocare Group ultrapassa R$ 2,5 bilhões sob gestão e reforça pilar de tecnologia.</h3>
+                        <a href="#" class="clipping-link">Ler matéria <span>&rarr;</span></a>
+                    </div>
+
+                    <div class="clipping-card">
+                        <div class="clipping-img" style="background: #e0e0e0; display:flex; align-items:center; justify-content:center; color:#555; font-size: 1.2rem; font-weight:bold;">Estadão</div>
+                        <h3 class="clipping-title">Os desafios das empresas no mercado financeiro e a importância de sistemas de alta disponibilidade.</h3>
+                        <a href="#" class="clipping-link">Ler matéria <span>&rarr;</span></a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -420,7 +390,6 @@
                 
                 <div style="padding: 60px; background: #ffffff; border-radius: 24px; border: 1px solid var(--border-light);">
                     <img src="https://raw.githubusercontent.com/owagnersborges/wvtec/refs/heads/main/logotipo_vocaretech.png" alt="Vocare Tech" style="height: 24px; margin-bottom: 32px;">
-                    
                     <h3 style="font-size: 2rem; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">Tecnologias que transformam.</h3>
                     <p style="font-size: 1.2rem; font-weight: 500; color: var(--text-primary); margin-bottom: 24px;">Tecnologia com propósito, construída para quem não pode errar.</p>
                     <p class="text-paragraph" style="margin: 0;">Somos o braço de tecnologia do Vocare Group, dedicados ao desenvolvimento de sistemas para os mercados financeiro, contábil e fiscal. Nossas soluções são projetadas com foco em conformidade regulatória, integridade de dados e alta disponibilidade. Para operações que exigem segurança e precisão.</p>
@@ -444,7 +413,7 @@
                         <div class="stat-block"><h3>Brasil</h3><p>Atuação em todo o Brasil.</p></div>
                         <div class="stat-block"><h3>Equipes</h3><p>Multidisciplinares.</p></div>
                     </div>
-                    <div class="image-placeholder" style="height: 250px;">[FOTO DO PRÉDIO / FOTOS INTERNAS]</div>
+                    <div style="width: 100%; height: 250px; background: #eaeaea; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: #999;">[FOTO DO PRÉDIO / FOTOS INTERNAS]</div>
                 </div>
             </div>
         </section>
@@ -459,7 +428,6 @@
                         <img src="https://raw.githubusercontent.com/owagnersborges/wvtec/refs/heads/main/logo-ctb.jpg" alt="CTB Logo" style="height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7';">
                         <span style="color: var(--text-tertiary); font-weight: 500;">+ Mais de 4.000 clientes</span>
                     </div>
-
                 </div>
 
                 <div class="split-layout" style="margin-bottom: 100px;">
@@ -471,7 +439,7 @@
                             <button class="btn-secondary" onclick="window.open('https://vocaregroup.com/redencao', '_blank')">Clique aqui.</button>
                         </div>
                     </div>
-                    <div class="image-placeholder">[IMAGEM INSTITUCIONAL]</div>
+                    <div style="width: 100%; height: 300px; background: #eaeaea; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: #999;">[IMAGEM INSTITUCIONAL]</div>
                 </div>
 
                 <div class="split-layout">
@@ -598,8 +566,8 @@
                         Centro, Curitiba/PR
                     </p>
                     <div class="grid-2">
-                        <div class="image-placeholder" style="height: 200px; background: #ffffff;">[FOTO DO PRÉDIO]</div>
-                        <div class="image-placeholder" style="height: 200px; background: #ffffff;">[FOTOS INTERNAS IDENTIDADE TECH]</div>
+                        <div style="width: 100%; height: 200px; background: #ffffff; border-radius: 16px; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; color: #999;">[FOTO DO PRÉDIO]</div>
+                        <div style="width: 100%; height: 200px; background: #ffffff; border-radius: 16px; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; color: #999;">[FOTOS INTERNAS TECH]</div>
                     </div>
                 </div>
             </div>
@@ -642,12 +610,10 @@
     </footer>
 
     <script>
-        // Lógica de Atualização da Navbar no Scroll
         function updateNavbarState() {
             const navbar = document.getElementById('main-nav');
             const isHome = document.getElementById('home').classList.contains('active');
             
-            // O menu é transparente apenas na página Inicial e apenas no topo (scrollY < 50px)
             if (isHome && window.scrollY < 50) {
                 navbar.classList.remove('scrolled');
             } else {
@@ -655,30 +621,24 @@
             }
         }
 
-        // Navegação entre páginas
         function navigate(pageId) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Atualiza o estado visual do menu imediatamente após clicar
             updateNavbarState();
         }
 
-        // Eventos
         window.addEventListener('scroll', updateNavbarState);
         document.addEventListener('DOMContentLoaded', updateNavbarState);
 
-        // Lógica do Slider do Ecrã Principal
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slider-dot');
         const navDotsContainer = document.querySelector('.slider-nav');
         
         function updateSliderDotsColor(index) {
-            // Se o slide for o ARK (1) ou VGroup (2) que têm fundos mais claros, mudamos os pontos de navegação para escuro
             if (index === 1 || index === 2) {
                 navDotsContainer.classList.add('dark-dots');
             } else {
@@ -704,7 +664,7 @@
             showSlide(currentSlide + 1);
         }
 
-        let slideInterval = setInterval(nextSlide, 5000); // Rotação a cada 5 segundos
+        let slideInterval = setInterval(nextSlide, 5000);
 
         function setSlide(index) {
             showSlide(index);
