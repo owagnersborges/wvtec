@@ -128,7 +128,7 @@
         .stat-block p { font-size: 1rem; color: var(--text-secondary); font-weight: 500; }
 
         /* =========================================
-           CARDS DE CLIPPING (NOVO)
+           CARDS DE CLIPPING 
         =========================================== */
         .clipping-card { background: #ffffff; border: 1px solid var(--border-light); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: left; height: 100%; }
         .clipping-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.06); }
@@ -136,6 +136,9 @@
         .clipping-title { font-weight: 600; font-size: 1.15rem; color: var(--text-primary); line-height: 1.4; flex-grow: 1; }
         .clipping-link { font-weight: 600; color: var(--accent); text-decoration: none; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; margin-top: auto; }
         .clipping-link:hover { text-decoration: underline; }
+
+        /* Componentes de Imagem Placeholder */
+        .image-placeholder { width: 100%; min-height: 400px; background: #eaeaea; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); object-fit: cover; }
 
         /* Formulários */
         .form-container { background: #ffffff; border: 1px solid var(--border-light); border-radius: 24px; padding: 48px; box-shadow: 0 20px 40px rgba(0,0,0,0.02); }
@@ -289,10 +292,14 @@
         <section class="section-padding section-bg">
             <div class="container split-layout">
                 <div>
-                    <span class="section-label">ARK - O software da nova contabilidade</span>
-                    <h2 class="section-title">Não há mais tempo para simulações.</h2>
+                    <h2 class="section-title" style="font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 32px;">
+                        ARK<br>
+                        <span style="font-weight: 400; color: var(--text-secondary); font-size: clamp(1.5rem, 3vw, 2.5rem); display: block; margin-top: 8px;">O software da nova contabilidade.</span>
+                    </h2>
+
+                    <p class="text-paragraph" style="font-weight: 600; color: var(--text-primary); font-size: 1.3rem;">Não há mais tempo para simulações.</p>
                     <p class="text-paragraph">A Reforma Tributária já está em curso e as empresas precisam de cálculos precisos, baseados em dados reais da operação, para tomar decisões que protejam margem, caixa e competitividade.</p>
-                    <p class="text-paragraph" style="font-weight: 600; color: var(--text-primary);">Enquanto outros softwares entregam simulações, o ARK entrega clareza para a decisão.</p>
+                    <p class="text-paragraph">Enquanto outros softwares entregam simulações, o ARK entrega clareza para a decisão.</p>
 
                     <div style="margin: 40px 0; padding: 32px; background: #ffffff; border-radius: 20px; border: 1px solid var(--border-light); display: flex; flex-direction: column; gap: 16px;">
                         <span style="font-weight: 600; color: var(--text-primary); font-size: 1.1rem; display: flex; align-items: center; flex-wrap: wrap; gap: 16px;">
@@ -303,7 +310,7 @@
                         <a href="#" onclick="navigate('fale-conosco')" style="color: var(--accent); font-weight: 600; text-decoration: underline;">Saiba mais.</a>
                     </div>
 
-                    <p class="text-paragraph">Tecnologia que transforma complexidade regulatória em vantagem competitiva. Conheça o ARK.</p>
+                    <p class="text-paragraph" style="margin-bottom: 32px;">Tecnologia que transforma complexidade regulatória em vantagem competitiva. Conheça o ARK.</p>
                     <button class="btn-primary" onclick="alert('A redirecionar para Website ARK...')">Website ARK.</button>
                 </div>
                 
@@ -413,7 +420,7 @@
                         <div class="stat-block"><h3>Brasil</h3><p>Atuação em todo o Brasil.</p></div>
                         <div class="stat-block"><h3>Equipes</h3><p>Multidisciplinares.</p></div>
                     </div>
-                    <div style="width: 100%; height: 250px; background: #eaeaea; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: #999;">[FOTO DO PRÉDIO / FOTOS INTERNAS]</div>
+                    <div class="image-placeholder" style="height: 250px;">[FOTO DO PRÉDIO / FOTOS INTERNAS]</div>
                 </div>
             </div>
         </section>
@@ -430,7 +437,7 @@
                     </div>
                 </div>
 
-                <div class="split-layout" style="margin-bottom: 100px;">
+                <div class="split-layout">
                     <div>
                         <h2 class="section-title" style="font-size: 2rem;">Os ótimos resultados de hoje podem promover resultados ainda melhores amanhã.</h2>
                         <p class="text-paragraph"><strong>Compromisso e propósito</strong><br>Através do nosso ecossistema e do nosso conhecimento em mercado de capitais, apoiamos instituições e causas que promovem dignidade, equidade e desenvolvimento sustentável. Aplicamos o conceito de Redenção Econômica pois acreditamos que a prosperidade gerada com excelência tem o poder de transformar vidas, promovendo a prosperidade partilhada e o desenvolvimento sustentável com justiça e equidade.</p>
@@ -439,23 +446,39 @@
                             <button class="btn-secondary" onclick="window.open('https://vocaregroup.com/redencao', '_blank')">Clique aqui.</button>
                         </div>
                     </div>
-                    <div style="width: 100%; height: 300px; background: #eaeaea; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: #999;">[IMAGEM INSTITUCIONAL]</div>
-                </div>
-
-                <div class="split-layout">
-                    <div style="padding: 60px; background: #ffffff; border-radius: 24px; border: 1px solid var(--border-light);">
-                        <h2 class="section-title" style="font-size: 2rem;">Pessoas e carreiras</h2>
-                        <p class="text-paragraph">A Vocare Tech oferece-lhe a oportunidade de desenvolver o seu verdadeiro potencial, de fazer as coisas de forma diferente e de ser um agente de mudanças positivas. Fará parte de uma empresa brasileira em expansão, com espaço para quem já tem experiência consolidada e para quem está a construir a sua trajetória.</p>
-                        <button class="btn-primary" onclick="navigate('trabalhe-conosco')">Trabalhe connosco.</button>
-                    </div>
-                    <div style="padding: 60px; background: #ffffff; border-radius: 24px; border: 1px solid var(--border-light);">
-                        <h2 class="section-title" style="font-size: 2rem;">Parceiros</h2>
-                        <p class="text-paragraph">A Vocare Tech constrói relações de parceria com profissionais e escritórios que atuam na gestão contábil, tributária e jurídica. Acreditamos que o conhecimento especializado combinado com a nossa tecnologia gera resultados mais consistentes.<br><br>Se atua nesse mercado, entre em contacto.</p>
-                        <button class="btn-secondary" onclick="alert('ABRIR POP-UP FORM PARCEIRO')">Saiba mais.</button>
-                    </div>
+                    <div class="image-placeholder">[IMAGEM INSTITUCIONAL]</div>
                 </div>
             </div>
         </section>
+
+        <section class="section-padding" style="background: #ffffff; border-top: 1px solid var(--border-light);">
+            <div class="container split-layout">
+                <div>
+                    <span class="section-label">Junte-se a nós</span>
+                    <h2 class="section-title">Pessoas e carreiras</h2>
+                    <p class="text-paragraph">A Vocare Tech oferece-lhe a oportunidade de desenvolver o seu verdadeiro potencial, de fazer as coisas de forma diferente e de ser um agente de mudanças positivas. Fará parte de uma empresa brasileira em expansão, com espaço para quem já tem experiência consolidada e para quem está a construir a sua trajetória.</p>
+                    <button class="btn-primary" onclick="navigate('trabalhe-conosco')">Trabalhe connosco.</button>
+                </div>
+                <div class="image-placeholder" style="height: 400px; border-radius: 24px;">
+                    [IMAGEM DA EQUIPA / AMBIENTE DE TRABALHO]
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding section-bg" style="border-top: 1px solid var(--border-light);">
+            <div class="container split-layout">
+                <div class="image-placeholder" style="height: 400px; border-radius: 24px; background: #ffffff;">
+                    [IMAGEM PARCERIAS / NEGÓCIOS]
+                </div>
+                <div>
+                    <span class="section-label">Ecossistema</span>
+                    <h2 class="section-title">Parceiros</h2>
+                    <p class="text-paragraph">A Vocare Tech constrói relações de parceria com profissionais e escritórios que atuam na gestão contábil, tributária e jurídica. Acreditamos que o conhecimento especializado combinado com a nossa tecnologia gera resultados mais consistentes.<br><br>Se atua nesse mercado e quer explorar como uma parceria com a Vocare Tech pode fortalecer a sua atuação, entre em contacto.</p>
+                    <button class="btn-secondary" style="background: #ffffff;" onclick="alert('ABRIR POP-UP FORM PARCEIRO')">Saiba mais.</button>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <div id="trabalhe-conosco" class="page">
