@@ -9,10 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Variáveis Light Mode */
+        /* Variáveis de Cor */
         :root {
             --bg-base: #ffffff;
-            --bg-section: #f9f9fa;
+            --bg-section: #f9f9fa; 
             --border-light: rgba(0, 0, 0, 0.06);
             --text-primary: #111111;
             --text-secondary: #555555;
@@ -24,71 +24,114 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg-base); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
 
-        /* NAVEGAÇÃO */
-        .navbar-container { position: fixed; top: 24px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 1000; padding: 0 20px; }
-        nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-light); border-radius: 100px; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); }
-        .logo { display: flex; align-items: center; cursor: pointer; }
-        .logo img { height: 28px; width: auto; object-fit: contain; }
-        .menu-links { display: flex; gap: 24px; align-items: center; position: relative; }
-        .menu-links button { background: none; border: none; color: var(--text-secondary); font-size: 14px; font-weight: 500; cursor: pointer; transition: color 0.2s ease; }
-        .menu-links button:hover, .menu-links button.active-link { color: var(--text-primary); }
+        /* =========================================
+           NAVEGAÇÃO (EFEITO TOTVS TRANSPARENTE/SÓLIDO)
+        =========================================== */
+        .navbar-container { 
+            position: fixed; 
+            top: 0; left: 0; width: 100%; 
+            display: flex; justify-content: center; 
+            z-index: 1000; 
+            padding: 24px 40px; 
+            background: transparent; 
+            transition: all 0.4s ease; 
+        }
+        .nav-inner {
+            display: flex; justify-content: space-between; align-items: center; 
+            width: 100%; max-width: 1200px;
+        }
         
-        /* Dropdown */
+        /* Logo e Cores Transparentes (Topo) */
+        .logo { display: flex; align-items: center; cursor: pointer; }
+        .logo img { height: 28px; width: auto; object-fit: contain; filter: brightness(0) invert(1); transition: all 0.4s ease; }
+        
+        .menu-links { display: flex; gap: 24px; align-items: center; position: relative; }
+        .menu-links button { background: none; border: none; color: #ffffff; font-size: 14px; font-weight: 500; cursor: pointer; transition: color 0.2s ease; }
+        .menu-links button:hover { color: rgba(255,255,255,0.7); }
+        .nav-separator { border-left: 1px solid rgba(255,255,255,0.3); height: 20px; margin: 0 4px; transition: border-color 0.4s ease; }
+
+        /* Botão Primário Transparente (Ghost Button) */
+        .navbar-container .btn-primary {
+            background-color: transparent; border: 1px solid rgba(255,255,255,0.5); color: #ffffff !important; padding: 12px 24px; border-radius: 100px; font-weight: 500 !important; font-size: 14px; transition: all 0.3s;
+        }
+        .navbar-container .btn-primary:hover { background-color: #ffffff; color: #000000 !important; }
+
+        /* Dropdown (Sempre branco para legibilidade) */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #ffffff; min-width: 220px; border-radius: 16px; border: 1px solid var(--border-light); padding: 12px; margin-top: 10px; box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
         .dropdown:hover .dropdown-content { display: block; }
-        .dropdown-content a { color: var(--text-secondary); padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
-        .dropdown-content a:hover { background-color: var(--bg-section); color: var(--text-primary); }
+        .dropdown-content a { color: var(--text-secondary) !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+        .dropdown-content a:hover { background-color: var(--bg-section); color: var(--text-primary) !important; }
 
-        /* Botões */
-        .btn-primary { background-color: var(--accent); color: var(--accent-invert) !important; padding: 14px 28px; border-radius: 100px; font-weight: 500 !important; font-size: 15px; transition: transform 0.2s, opacity 0.2s; cursor: pointer; border: none; display: inline-block; }
+        /* =========================================
+           NAVEGAÇÃO SÓLIDA (SCROLLED)
+        =========================================== */
+        .navbar-container.scrolled {
+            padding: 16px 40px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .navbar-container.scrolled .logo img { filter: none; }
+        .navbar-container.scrolled .menu-links button { color: var(--text-secondary); }
+        .navbar-container.scrolled .menu-links button:hover { color: var(--text-primary); }
+        .navbar-container.scrolled .nav-separator { border-left-color: var(--border-light); }
+        
+        /* Botão Primário Sólido */
+        .navbar-container.scrolled .btn-primary {
+            background-color: var(--accent); color: var(--accent-invert) !important; border-color: transparent;
+        }
+        .navbar-container.scrolled .btn-primary:hover { opacity: 0.9; background-color: var(--accent); color: var(--accent-invert) !important; }
+
+        /* PÁGINAS E BOTÕES GERAIS */
+        .btn-primary { background-color: var(--accent); color: var(--accent-invert) !important; padding: 14px 28px; border-radius: 100px; font-weight: 500; font-size: 15px; cursor: pointer; border: none; transition: transform 0.2s, opacity 0.2s; }
         .btn-primary:hover { opacity: 0.9; transform: scale(1.02); }
-        .btn-secondary { background-color: transparent; color: var(--text-primary); border: 1px solid rgba(0,0,0,0.15); padding: 14px 28px; border-radius: 100px; font-weight: 500; font-size: 15px; cursor: pointer; transition: background 0.2s; display: inline-block; }
+        .btn-secondary { background-color: transparent; color: var(--text-primary); border: 1px solid rgba(0,0,0,0.15); padding: 14px 28px; border-radius: 100px; font-weight: 500; font-size: 15px; cursor: pointer; transition: background 0.2s; }
         .btn-secondary:hover { background-color: rgba(0,0,0,0.03); }
 
-        /* PÁGINAS */
         .page { display: none; animation: fadeIn 0.4s ease-out; }
         .page.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* -------------------------------------------
-           NOVO SLIDER ESTILO TOTVS
-        ----------------------------------------------*/
-        .slider-wrapper {
-            padding: 120px 24px 60px 24px; /* Espaço para o menu */
-            max-width: 1248px;
-            margin: 0 auto;
-        }
+        /* =========================================
+           SLIDER FULL WIDTH (ESTILO TOTVS)
+        =========================================== */
+        .slider-wrapper { width: 100%; padding: 0; margin: 0; }
         .hero-slider {
             position: relative;
             width: 100%;
-            height: 550px;
-            border-radius: 32px;
+            height: 100vh; /* Ocupa 100% da altura da tela */
+            min-height: 700px;
+            max-height: 900px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
         }
+        
+        /* Gradiente escuro no topo para o menu branco ser legível sempre */
+        .slider-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 180px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-            display: flex;
-            align-items: center;
-            padding: 80px;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 0.8s ease-in-out;
+            display: flex; align-items: center; justify-content: center;
             z-index: 0;
         }
         .slide.active { opacity: 1; z-index: 1; }
-        .slide-content { max-width: 700px; transform: translateY(20px); opacity: 0; transition: all 0.8s ease 0.3s; }
+        
+        .slide-content-container { width: 100%; max-width: 1200px; padding: 0 24px; position: relative; z-index: 2; margin-top: 60px; }
+        .slide-content { max-width: 800px; transform: translateY(20px); opacity: 0; transition: all 0.8s ease 0.3s; }
         .slide.active .slide-content { transform: translateY(0); opacity: 1; }
         
         .slide-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 24px; display: block; font-weight: 600; }
-        .slide-title { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 24px; }
-        .slide-text { font-size: 1.25rem; line-height: 1.6; font-weight: 400; }
+        .slide-title { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 24px; }
+        .slide-text { font-size: 1.3rem; line-height: 1.6; font-weight: 400; max-width: 700px; }
 
-        /* Cores dos Slides */
+        /* Cores de Fundo dos Slides */
         .bg-tech { background: linear-gradient(135deg, #0a0a0a 0%, #222222 100%); color: #ffffff; }
         .bg-tech .slide-label { color: #aaaaaa; }
         .bg-tech .slide-text { color: #cccccc; }
@@ -97,35 +140,31 @@
         .bg-ark .slide-label { color: #555555; }
         .bg-ark .slide-text { color: #444444; }
 
-        .bg-group { background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%); color: #111111; border: 1px solid rgba(0,0,0,0.05); border-radius: 32px;}
-        .bg-group .slide-label { color: #888888; }
+        .bg-group { background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); color: #111111; }
+        .bg-group .slide-label { color: #777777; }
         .bg-group .slide-text { color: #555555; }
 
         /* Controles do Slider */
-        .slider-nav { position: absolute; bottom: 40px; left: 80px; display: flex; gap: 12px; z-index: 10; }
-        .slider-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: all 0.3s ease; }
-        .slider-dot.active { background: #ffffff; transform: scale(1.3); }
-        
-        /* Modificador de cor dos controles para slides claros */
-        .slider-nav.dark-dots .slider-dot { background: rgba(0, 0, 0, 0.15); }
+        .slider-nav { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 10; width: 100%; max-width: 1200px; padding: 0 24px; justify-content: flex-start; }
+        .slider-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: all 0.3s ease; }
+        .slider-dot.active { background: #ffffff; transform: scale(1.4); }
+        .slider-nav.dark-dots .slider-dot { background: rgba(0, 0, 0, 0.2); }
         .slider-nav.dark-dots .slider-dot.active { background: #111111; }
 
-        /* -------------------------------------------
-           ESTRUTURA GERAL
-        ----------------------------------------------*/
-        .section-padding { padding: 120px 24px; }
+        /* =========================================
+           ESTRUTURA GERAL (SEÇÕES)
+        =========================================== */
+        .section-padding { padding: 140px 24px; }
         .section-bg { background-color: var(--bg-section); }
         .container { max-width: 1200px; margin: 0 auto; }
         .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         .split-layout.uneven { grid-template-columns: 1fr 1.5fr; }
         
-        .hero-title { font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; color: var(--text-primary); margin-bottom: 32px; }
-        .hero-subtitle { font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--text-secondary); font-weight: 400; line-height: 1.5; margin-bottom: 40px; max-width: 800px; }
+        .hero-title { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; color: var(--text-primary); margin-bottom: 32px; }
         .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-tertiary); margin-bottom: 20px; display: block; font-weight: 600; }
         .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; letter-spacing: -0.03em; margin-bottom: 24px; color: var(--text-primary); line-height: 1.1; }
         .text-paragraph { color: var(--text-secondary); font-size: 1.15rem; line-height: 1.7; margin-bottom: 24px; }
 
-        /* Grids e Listas */
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px; }
         
@@ -158,16 +197,17 @@
 
         @media (max-width: 992px) {
             .split-layout, .split-layout.uneven { grid-template-columns: 1fr; gap: 60px; }
-            .section-padding { padding: 80px 24px; }
-            .hero-slider { height: 600px; }
-            .slide { padding: 40px; }
+            .section-padding { padding: 100px 24px; }
+            .hero-slider { min-height: 600px; height: 80vh; }
+            .navbar-container { padding: 20px; }
+            .navbar-container.scrolled { padding: 16px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="navbar-container">
-        <nav>
+    <div class="navbar-container" id="main-nav">
+        <div class="nav-inner">
             <div class="logo" onclick="navigate('home')">
                 <img src="https://raw.githubusercontent.com/owagnersborges/wvtec/refs/heads/main/logotipo_vocaretech.png" alt="Vocare Tech Logo">
             </div>
@@ -177,48 +217,55 @@
                 <div class="dropdown">
                     <button class="nav-btn">Sou cliente</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="alert('Ligue para nosso Suporte Técnico: 0800 XXX XXXX')">Suporte técnico 0800</a>
-                        <a href="#" onclick="alert('Redirecionando para a página de Login...')">Área do cliente</a>
-                        <a href="#" onclick="alert('ABRIR FORMULÁRIO: Me Ligue\nCampos: Nome, Sobrenome, CNPJ, Celular')">Me ligue</a>
+                        <a href="#" onclick="alert('Ligue para o nosso Suporte Técnico: 0800 XXX XXXX')">Suporte técnico 0800</a>
+                        <a href="#" onclick="alert('A redirecionar para a página de Login...')">Área do cliente</a>
+                        <a href="#" onclick="alert('ABRIR FORMULÁRIO: Liguem-me\nCampos: Nome, Apelido, CNPJ, Telemóvel')">Liguem-me</a>
                     </div>
                 </div>
 
-                <button class="nav-btn" onclick="alert('ABRIR POP-UP CONTRATAÇÃO\nCampos: Nome, Sobrenome, Celular com DDD, E-mail, Checkbox de comunicações')">Quero contratar</button>
-                <button class="nav-btn" onclick="navigate('fale-conosco')">Fale conosco</button>
+                <button class="btn-primary" onclick="alert('ABRIR POP-UP CONTRATAÇÃO\nCampos: Nome, Apelido, Telemóvel, E-mail, Checkbox de comunicações')">Quero contratar</button>
+                <button class="nav-btn" onclick="navigate('fale-conosco')">Fale connosco</button>
                 
-                <div style="border-left: 1px solid var(--border-light); height: 20px; margin: 0 4px;"></div>
-                <button class="nav-btn" style="color: var(--text-primary); font-weight: 600;">PT</button>
-                <button class="nav-btn">EN</button>
+                <div class="nav-separator"></div>
+                <button class="nav-btn" style="font-weight: 600;">PT</button>
+                <button class="nav-btn" style="opacity: 0.6;">EN</button>
             </div>
-        </nav>
+        </div>
     </div>
 
     <div id="home" class="page active">
         
         <div class="slider-wrapper">
             <div class="hero-slider">
+                <div class="slider-overlay"></div>
                 
                 <div class="slide bg-tech active">
-                    <div class="slide-content">
-                        <span class="slide-label">Vocare Tech</span>
-                        <h2 class="slide-title">Infraestrutura digital inteligente para operações que não podem errar.</h2>
-                        <p class="slide-text">Atendemos os mercados financeiro, contábil e fiscal.<br><br>Conformidade regulatória | Integridade de dados | Alta disponibilidade.</p>
+                    <div class="slide-content-container">
+                        <div class="slide-content">
+                            <span class="slide-label">Vocare Tech</span>
+                            <h2 class="slide-title">Infraestrutura digital inteligente para operações que não podem errar.</h2>
+                            <p class="slide-text">Atendemos os mercados financeiro, contábil e fiscal.<br><br>Conformidade regulatória | Integridade de dados | Alta disponibilidade.</p>
+                        </div>
                     </div>
                 </div>
 
                 <div class="slide bg-ark">
-                    <div class="slide-content">
-                        <span class="slide-label">ARK</span>
-                        <h2 class="slide-title">O software da nova contabilidade.</h2>
-                        <p class="slide-text">Previsibilidade, compliance e estratégia para atravessar a Reforma Tributária e transformar em vantagem competitiva o que para muitos será mera adequação.</p>
+                    <div class="slide-content-container">
+                        <div class="slide-content">
+                            <span class="slide-label">ARK</span>
+                            <h2 class="slide-title">O software da nova contabilidade.</h2>
+                            <p class="slide-text">Previsibilidade, compliance e estratégia para atravessar a Reforma Tributária e transformar em vantagem competitiva o que para muitos será mera adequação.</p>
+                        </div>
                     </div>
                 </div>
 
                 <div class="slide bg-group">
-                    <div class="slide-content">
-                        <span class="slide-label">VOCARE GROUP</span>
-                        <h2 class="slide-title">Valor para as pessoas.</h2>
-                        <p class="slide-text">Um ecossistema que impulsiona a vocação de famílias e empresas para gerar realizações que transcendem o tempo.</p>
+                    <div class="slide-content-container">
+                        <div class="slide-content">
+                            <span class="slide-label">VOCARE GROUP</span>
+                            <h2 class="slide-title">Valor para as pessoas.</h2>
+                            <p class="slide-text">Um ecossistema que impulsiona a vocação de famílias e empresas para gerar realizações que transcendem o tempo.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -258,7 +305,7 @@
                 <div style="align-self: flex-start; position: sticky; top: 120px;">
                     <span class="section-label">Soluções</span>
                     <h2 class="section-title">Nossas soluções</h2>
-                    <p class="text-paragraph" style="margin-bottom: 40px;">Obtenha a melhor solução para a sua necessidades e alcance conformidade com máxima eficiência.</p>
+                    <p class="text-paragraph" style="margin-bottom: 40px;">Obtenha a melhor solução para as suas necessidades e alcance conformidade com máxima eficiência.</p>
                     <button class="btn-primary" onclick="navigate('fale-conosco')">Eu quero.</button>
                 </div>
                 
@@ -269,15 +316,15 @@
                     </div>
                     <div class="solution-item">
                         <h3>Securitização</h3>
-                        <p>Sistemas para FIDCs, veículos estruturados e fundos com rastreabilidade e conformidade regulatória. Integrado à Vocare Securitizadora S2, registrada na B3.</p>
+                        <p>Sistemas para FIDCs, veículos estruturados e fundos com rastreabilidade e conformidade regulatória. Integrado à Vocare Securitizadora S2, registada na B3.</p>
                     </div>
                     <div class="solution-item">
                         <h3>Investimentos</h3>
-                        <p>Plataformas para análise, decisão e automação em ambientes financeiros complexos, com governança de ativos tributários integrada ao planejamento patrimonial.</p>
+                        <p>Plataformas para análise, decisão e automação em ambientes financeiros complexos, com governança de ativos tributários integrada ao planeamento patrimonial.</p>
                     </div>
                     <div class="solution-item" style="border-bottom: 1px solid var(--border-light);">
                         <h3>Estruturas financeiras</h3>
-                        <p>Monitoramento, análise de risco e relatórios regulatórios para crédito e fundos. Compliance automatizado e modelagem preditiva por especialistas do sistema tributário brasileiro.</p>
+                        <p>Monitorização, análise de risco e relatórios regulatórios para crédito e fundos. Compliance automatizado e modelagem preditiva por especialistas do sistema tributário brasileiro.</p>
                     </div>
                 </div>
             </div>
@@ -289,7 +336,7 @@
                     <span class="section-label">ARK - O software da nova contabilidade</span>
                     <h2 class="section-title">Não há mais tempo para simulações.</h2>
                     <p class="text-paragraph">A Reforma Tributária já está em curso e as empresas precisam de cálculos precisos, baseados em dados reais da operação, para tomar decisões que protejam margem, caixa e competitividade.</p>
-                    <p class="text-paragraph" style="font-weight: 600; color: var(--text-primary);">Enquanto outros softwares entregam simulações, o ARK entrega clareza para decisão.</p>
+                    <p class="text-paragraph" style="font-weight: 600; color: var(--text-primary);">Enquanto outros softwares entregam simulações, o ARK entrega clareza para a decisão.</p>
 
                     <div style="margin: 40px 0; padding: 32px; background: #ffffff; border-radius: 20px; border: 1px solid var(--border-light); display: flex; flex-direction: column; gap: 16px;">
                         <span style="font-weight: 600; color: var(--text-primary); font-size: 1.1rem;">Tecnologia indicada pelo CTB (Comitê Tributário Brasileiro) para atravessar a Reforma. [LOGO CTB]</span>
@@ -298,7 +345,7 @@
                     </div>
 
                     <p class="text-paragraph">Tecnologia que transforma complexidade regulatória em vantagem competitiva. Conheça o ARK.</p>
-                    <button class="btn-primary" onclick="alert('Redirecionando para Website ARK...')">Website ARK.</button>
+                    <button class="btn-primary" onclick="alert('A redirecionar para Website ARK...')">Website ARK.</button>
                 </div>
                 <div class="image-placeholder" style="height: 600px; background: #ffffff;">
                     [IMAGEM DO DASHBOARD ARK]
@@ -311,7 +358,7 @@
                 <h2 class="section-title" style="max-width: 900px; margin: 0 auto 32px auto;">Vocação é atender a um chamado que vai além da profissão e cumpre um propósito maior.</h2>
                 <p class="text-paragraph" style="max-width: 800px; margin: 0 auto 60px auto;">Vocação é o compromisso de alinhar talentos, empresas e recursos a um propósito maior de gerar valor sustentável e impacto positivo na sociedade.</p>
                 
-                <span class="section-label" style="margin-bottom: 24px;">Conheça nossos valores norteadores</span>
+                <span class="section-label" style="margin-bottom: 24px;">Conheça os nossos valores norteadores</span>
                 <div class="tags-container" style="justify-content: center; margin-bottom: 80px;">
                     <div class="tag">Vocação</div>
                     <div class="tag">Excelência</div>
@@ -333,9 +380,9 @@
                 <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px;">
                     <div>
                         <span class="section-label">Clipping e Mídia</span>
-                        <h2 class="section-title" style="margin: 0;">O que estão falando sobre nós.</h2>
+                        <h2 class="section-title" style="margin: 0;">O que estão a falar sobre nós.</h2>
                     </div>
-                    <button class="btn-secondary" onclick="alert('Redirecionando para Página de Clipping...')">Ver mais.</button>
+                    <button class="btn-secondary" onclick="alert('A redirecionar para Página de Clipping...')">Ver mais.</button>
                 </div>
                 
                 <div class="grid-4">
@@ -349,7 +396,7 @@
     </div>
 
     <div id="quem-somos" class="page">
-        <section class="section-padding" style="padding-top: 200px;">
+        <section class="section-padding" style="padding-top: 160px;">
             <div class="container">
                 <span class="section-label">Conheça a Vocare Tech</span>
                 <h1 class="hero-title" style="max-width: 900px;">Vocação é atender a um chamado que vai além da profissão e cumpre um propósito maior.</h1>
@@ -369,7 +416,7 @@
                     <img src="https://raw.githubusercontent.com/owagnersborges/wvtec/refs/heads/main/logotipo_vocaretech.png" alt="Vocare Tech" style="height: 24px; margin-bottom: 32px;">
                     <h3 style="font-size: 2rem; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">Tecnologias que transformam.</h3>
                     <p style="font-size: 1.2rem; font-weight: 500; color: var(--text-primary); margin-bottom: 24px;">Tecnologia com propósito, construída para quem não pode errar.</p>
-                    <p class="text-paragraph" style="margin: 0;">Somos o braço de tecnologia do Vocare Group, dedicados ao desenvolvimento de sistemas para os mercados financeiro, contábil e fiscal. Nossas soluções são projetadas com foco em conformidade regulatória, integridade de dados e alta disponibilidade. Para operações que demandam de segurança e precisão.</p>
+                    <p class="text-paragraph" style="margin: 0;">Somos o braço de tecnologia do Vocare Group, dedicados ao desenvolvimento de sistemas para os mercados financeiro, contábil e fiscal. Nossas soluções são projetadas com foco em conformidade regulatória, integridade de dados e alta disponibilidade. Para operações que exigem segurança e precisão.</p>
                 </div>
             </div>
         </section>
@@ -379,7 +426,7 @@
                 <div>
                     <h2 class="section-title">Por que escolher Vocare Tech</h2>
                     <p class="text-paragraph">Nascemos dentro de um ecossistema com mais de R$ 2,5 bilhões sob gestão e atuação no Brasil, Europa e EUA. Esse contexto não é apenas um dado institucional, é o que nos permite desenvolver tecnologia com profundidade real sobre os mercados que atendemos.</p>
-                    <p class="text-paragraph">Nossa tecnologia é construída por quem conhece o sistema por dentro: tributaristas, auditores, especialistas fiscais, advogados e engenheiros que entendem que uma linha de código errada em um ambiente regulatório pode custar muito mais do que tempo.</p>
+                    <p class="text-paragraph">A nossa tecnologia é construída por quem conhece o sistema por dentro: tributaristas, auditores, especialistas fiscais, advogados e engenheiros que entendem que uma linha de código errada num ambiente regulatório pode custar muito mais do que tempo.</p>
                     <p class="text-paragraph">Fazemos parte de um grupo que acredita que prosperidade gerada com excelência tem o poder de transformar vidas. Essa convicção orienta a forma como desenvolvemos cada solução. Trabalhamos com rigor técnico, responsabilidade e compromisso, em cada linha de código que entregamos, com resultados que importam.</p>
                 </div>
 
@@ -406,7 +453,7 @@
                 <div class="split-layout" style="margin-bottom: 100px;">
                     <div>
                         <h2 class="section-title" style="font-size: 2rem;">Os ótimos resultados de hoje podem promover resultados ainda melhores amanhã.</h2>
-                        <p class="text-paragraph"><strong>Compromisso e propósito</strong><br>Por meio do nosso ecossistema e do nosso conhecimento em mercado de capitais, apoiamos instituições e causas que promovem dignidade, equidade e desenvolvimento sustentável. Aplicamos o conceito de Redenção Econômica pois acreditamos que prosperidade gerada com excelência tem o poder de transformar vidas, promovendo prosperidade compartilhada e desenvolvimento sustentável com justiça e equidade.</p>
+                        <p class="text-paragraph"><strong>Compromisso e propósito</strong><br>Através do nosso ecossistema e do nosso conhecimento em mercado de capitais, apoiamos instituições e causas que promovem dignidade, equidade e desenvolvimento sustentável. Aplicamos o conceito de Redenção Econômica pois acreditamos que a prosperidade gerada com excelência tem o poder de transformar vidas, promovendo a prosperidade partilhada e o desenvolvimento sustentável com justiça e equidade.</p>
                         <div style="display: flex; align-items: center; gap: 16px; margin-top: 32px;">
                             <span style="font-weight: 500; color: var(--text-primary);">Quer entender mais sobre Redenção Econômica?</span>
                             <button class="btn-secondary" onclick="window.open('https://vocaregroup.com/redencao', '_blank')">Clique aqui.</button>
@@ -418,12 +465,12 @@
                 <div class="split-layout">
                     <div style="padding: 60px; background: #ffffff; border-radius: 24px; border: 1px solid var(--border-light);">
                         <h2 class="section-title" style="font-size: 2rem;">Pessoas e carreiras</h2>
-                        <p class="text-paragraph">A Vocare Tech te oferece a oportunidade de desenvolver seu verdadeiro potencial, de fazer as coisas de forma diferente e de ser um agente de mudanças positivas. Você fará parte de uma empresa brasileira em expansão, com espaço para quem já tem experiência consolidada e para quem está construindo sua trajetória.</p>
-                        <button class="btn-primary" onclick="navigate('trabalhe-conosco')">Trabalhe conosco.</button>
+                        <p class="text-paragraph">A Vocare Tech oferece-lhe a oportunidade de desenvolver o seu verdadeiro potencial, de fazer as coisas de forma diferente e de ser um agente de mudanças positivas. Fará parte de uma empresa brasileira em expansão, com espaço para quem já tem experiência consolidada e para quem está a construir a sua trajetória.</p>
+                        <button class="btn-primary" onclick="navigate('trabalhe-conosco')">Trabalhe connosco.</button>
                     </div>
                     <div style="padding: 60px; background: #ffffff; border-radius: 24px; border: 1px solid var(--border-light);">
                         <h2 class="section-title" style="font-size: 2rem;">Parceiros</h2>
-                        <p class="text-paragraph">A Vocare Tech constrói relações de parceria com profissionais e escritórios que atuam na gestão contábil, tributária e jurídica. Acreditamos que o conhecimento especializado combinado com a nossa tecnologia gera resultados mais consistentes.<br><br>Se você atua nesse mercado, entre em contato.</p>
+                        <p class="text-paragraph">A Vocare Tech constrói relações de parceria com profissionais e escritórios que atuam na gestão contábil, tributária e jurídica. Acreditamos que o conhecimento especializado combinado com a nossa tecnologia gera resultados mais consistentes.<br><br>Se atua nesse mercado, entre em contacto.</p>
                         <button class="btn-secondary" onclick="alert('ABRIR POP-UP FORM PARCEIRO')">Saiba mais.</button>
                     </div>
                 </div>
@@ -432,15 +479,15 @@
     </div>
 
     <div id="trabalhe-conosco" class="page">
-        <section class="section-padding" style="padding-top: 200px;">
+        <section class="section-padding" style="padding-top: 160px;">
             <div class="container split-layout">
                 <div>
-                    <span class="section-label">Trabalhe conosco</span>
-                    <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">Faça parte de quem está na linha de frente da transformação tributária brasileira e do futuro das empresas.</h1>
+                    <span class="section-label">Trabalhe connosco</span>
+                    <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">Faça parte de quem está na linha da frente da transformação tributária brasileira e do futuro das empresas.</h1>
                 </div>
                 <div>
-                    <h2 style="font-size: 1.8rem; font-weight: 600; color: var(--text-primary); margin-bottom: 24px;">A Vocare Tech desenvolve tecnologia em um dos momentos mais complexos e relevantes da história fiscal do Brasil.</h2>
-                    <p class="text-paragraph">A Reforma Tributária está redefinindo as regras do jogo para milhares de empresas, pessoas e famílias. Somos parte da infraestrutura que ajuda empresas a atravessar essa transição com inteligência, segurança e previsibilidade.</p>
+                    <h2 style="font-size: 1.8rem; font-weight: 600; color: var(--text-primary); margin-bottom: 24px;">A Vocare Tech desenvolve tecnologia num dos momentos mais complexos e relevantes da história fiscal do Brasil.</h2>
+                    <p class="text-paragraph">A Reforma Tributária está a redefinir as regras do jogo para milhares de empresas, pessoas e famílias. Somos parte da infraestrutura que ajuda empresas a atravessar essa transição com inteligência, segurança e previsibilidade.</p>
                 </div>
             </div>
         </section>
@@ -450,23 +497,23 @@
                 <div style="align-self: flex-start;">
                     <div style="margin-bottom: 60px;">
                         <h2 class="section-title">Procuramos pessoas</h2>
-                        <p class="text-paragraph">Gostamos de pessoas que não se contentam com o óbvio. Que entendem que tecnologia para mercados regulatórios exige mais do que código bem escrito, exige compreensão do problema, atenção ao detalhe e compromisso com a precisão.</p>
-                        <p class="text-paragraph">Se você tem experiência ou interesse nas áreas de engenharia de software, ciência de dados, produtos digitais, fiscal, tributário ou contábil, queremos conversar.</p>
+                        <p class="text-paragraph">Gostamos de pessoas que não se contentam com o óbvio. Que entendem que a tecnologia para mercados regulatórios exige mais do que código bem escrito, exige compreensão do problema, atenção ao detalhe e compromisso com a precisão.</p>
+                        <p class="text-paragraph">Se tem experiência ou interesse nas áreas de engenharia de software, ciência de dados, produtos digitais, fiscal, tributário ou contábil, queremos conversar.</p>
                     </div>
                     <div>
                         <h2 class="section-title">O que oferecemos</h2>
-                        <p class="text-paragraph">Oferecemos ambiente técnico de alto nível, desafios com problemas reais e relevantes, cultura orientada a propósito e a chance de construir soluções que impactam diretamente o resultado de empresas brasileiras.</p>
+                        <p class="text-paragraph">Oferecemos um ambiente técnico de alto nível, desafios com problemas reais e relevantes, cultura orientada para o propósito e a oportunidade de construir soluções que impactam diretamente o resultado de empresas brasileiras.</p>
                     </div>
                 </div>
 
                 <div class="form-container">
                     <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">Banco de Talentos</h3>
-                    <p class="text-paragraph" style="font-size: 1rem; margin-bottom: 32px;">Para se candidatar e fazer parte do nosso banco de talentos preencha o formulário abaixo.</p>
+                    <p class="text-paragraph" style="font-size: 1rem; margin-bottom: 32px;">Para se candidatar e fazer parte do nosso banco de talentos, preencha o formulário abaixo.</p>
                     
-                    <form onsubmit="event.preventDefault(); alert('Currículos enviado com sucesso.');">
+                    <form onsubmit="event.preventDefault(); alert('Currículos enviados com sucesso.');">
                         <input type="text" placeholder="Nome" required>
-                        <input type="text" placeholder="Sobrenome" required>
-                        <input type="tel" placeholder="Telefone com DDD" required>
+                        <input type="text" placeholder="Apelido" required>
+                        <input type="tel" placeholder="Telemóvel (com indicativo)" required>
                         <input type="email" placeholder="E-mail" required>
                         
                         <select required>
@@ -492,24 +539,24 @@
     </div>
 
     <div id="fale-conosco" class="page">
-        <section class="section-padding" style="padding-top: 200px;">
+        <section class="section-padding" style="padding-top: 160px;">
             <div class="container split-layout uneven">
                 <div>
                     <span class="section-label">Vamos conversar</span>
-                    <h1 class="hero-title" style="font-size: clamp(3rem, 6vw, 4.5rem);">Nosso time te responde com agilidade e sem rodeios.</h1>
-                    <p class="hero-subtitle">Se você quer entender como a Vocare Tech pode apoiar sua operação, tem uma dúvida sobre nossas soluções ou quer explorar uma parceria, estamos disponíveis.</p>
+                    <h1 class="hero-title" style="font-size: clamp(3rem, 6vw, 4.5rem);">A nossa equipa responde com agilidade e sem rodeios.</h1>
+                    <p class="hero-subtitle">Se quer perceber como a Vocare Tech pode apoiar a sua operação, tem uma dúvida sobre as nossas soluções ou quer explorar uma parceria, estamos disponíveis.</p>
                 </div>
 
                 <div class="form-container">
                     <form onsubmit="event.preventDefault(); alert('Dados enviados com sucesso.');">
                         <input type="text" placeholder="Nome" required>
-                        <input type="text" placeholder="Sobrenome" required>
-                        <input type="tel" placeholder="Telefone com DDD" required>
+                        <input type="text" placeholder="Apelido" required>
+                        <input type="tel" placeholder="Telemóvel (com indicativo)" required>
                         <input type="email" placeholder="E-mail" required>
                         
                         <div class="checkbox-group">
                             <input type="checkbox" required id="comunicacoes">
-                            <label for="comunicacoes">Eu concordo em receber comunicações da Vocare Tech.</label>
+                            <label for="comunicacoes">Concordo em receber comunicações da Vocare Tech.</label>
                         </div>
 
                         <button type="submit" class="btn-primary" style="margin-top: 24px; width: 100%;">Enviar</button>
@@ -521,12 +568,12 @@
         <section class="section-padding section-bg">
             <div class="container split-layout">
                 <div>
-                    <h2 class="section-title">Ou se preferir, fale diretamente conosco:</h2>
+                    <h2 class="section-title">Ou se preferir, fale diretamente connosco:</h2>
                     <div style="margin-top: 40px;">
                         <span class="section-label">E-mail</span>
                         <p style="color: var(--text-primary); font-size: 1.5rem; font-weight: 500; margin-bottom: 40px;">contato@vocaretech.com.br</p>
 
-                        <span class="section-label">Telefone / WhatsApp</span>
+                        <span class="section-label">Telemóvel / WhatsApp</span>
                         <p style="color: var(--text-primary); font-size: 1.5rem; font-weight: 500;">41 3797-0155</p>
                     </div>
                 </div>
@@ -561,16 +608,16 @@
                 <h4>Links do site</h4>
                 <a href="#" onclick="navigate('home')">Home</a>
                 <a href="#" onclick="navigate('quem-somos')">Quem Somos</a>
-                <a href="#" onclick="navigate('trabalhe-conosco')">Trabalhe Conosco</a>
-                <a href="#" onclick="navigate('fale-conosco')">Fale Conosco</a>
+                <a href="#" onclick="navigate('trabalhe-conosco')">Trabalhe Connosco</a>
+                <a href="#" onclick="navigate('fale-conosco')">Fale Connosco</a>
             </div>
 
             <div class="footer-col">
-                <h4>Contato</h4>
+                <h4>Contacto</h4>
                 <a href="mailto:contato@vocaretech.com.br" style="color: var(--text-primary); font-weight: 500;">contato@vocaretech.com.br</a>
                 <p>41 3797-0155</p>
                 <p style="margin-top: 32px; line-height: 1.8; color: var(--text-secondary);">Condomínio The Five Business - East Batel<br>R. Nunes Machado, 68 - Andar 14, Sala 1401<br>Centro, Curitiba - Paraná</p>
-                <button class="btn-secondary" style="padding: 10px 24px; font-size: 13px; margin-top: 16px;" onclick="alert('Abrindo link do mapa...')">Abrir mapa.</button>
+                <button class="btn-secondary" style="padding: 10px 24px; font-size: 13px; margin-top: 16px;" onclick="alert('A abrir link do mapa...')">Abrir mapa.</button>
             </div>
 
             <div class="footer-col">
@@ -583,27 +630,47 @@
     </footer>
 
     <script>
-        // Navegação SPA
+        // Lógica de Atualização da Navbar no Scroll
+        function updateNavbarState() {
+            const navbar = document.getElementById('main-nav');
+            const isHome = document.getElementById('home').classList.contains('active');
+            
+            // O menu é transparente apenas na página Inicial e apenas no topo (scrollY < 50px)
+            if (isHome && window.scrollY < 50) {
+                navbar.classList.remove('scrolled');
+            } else {
+                navbar.classList.add('scrolled');
+            }
+        }
+
+        // Navegação entre páginas
         function navigate(pageId) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Atualiza o estado visual do menu imediatamente após clicar
+            updateNavbarState();
         }
 
-        // Lógica do Slider da Página Principal
+        // Eventos
+        window.addEventListener('scroll', updateNavbarState);
+        document.addEventListener('DOMContentLoaded', updateNavbarState);
+
+        // Lógica do Slider do Ecrã Principal
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slider-dot');
-        const nav = document.querySelector('.slider-nav');
+        const navDotsContainer = document.querySelector('.slider-nav');
         
-        function updateSliderColor(index) {
-            // Se o slide for 1 (ARK) ou 2 (VGroup), aplica controles escuros
+        function updateSliderDotsColor(index) {
+            // Se o slide for o ARK (1) ou VGroup (2) que têm fundos mais claros, mudamos os pontos de navegação para escuro
             if (index === 1 || index === 2) {
-                nav.classList.add('dark-dots');
+                navDotsContainer.classList.add('dark-dots');
             } else {
-                nav.classList.remove('dark-dots');
+                navDotsContainer.classList.remove('dark-dots');
             }
         }
 
@@ -618,19 +685,17 @@
             slides[currentSlide].classList.add('active');
             dots[currentSlide].classList.add('active');
             
-            updateSliderColor(currentSlide);
+            updateSliderDotsColor(currentSlide);
         }
 
         function nextSlide() {
             showSlide(currentSlide + 1);
         }
 
-        let slideInterval = setInterval(nextSlide, 5000); // Troca automática a cada 5 segundos
+        let slideInterval = setInterval(nextSlide, 5000); // Rotação a cada 5 segundos
 
-        // Interação de clique nas bolinhas
         function setSlide(index) {
             showSlide(index);
-            // Zera o cronômetro para o usuário não ser interrompido imediatamente após o clique
             clearInterval(slideInterval);
             slideInterval = setInterval(nextSlide, 5000);
         }
